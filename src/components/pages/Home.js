@@ -1,6 +1,6 @@
 import React from "react";
 //import NavBar from "../layouts/NavBar";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import "./Home.css";
 

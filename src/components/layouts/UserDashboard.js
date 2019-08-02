@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./dashboard.css";
 
 export default function UserDashboard() {
@@ -87,7 +87,6 @@ export default function UserDashboard() {
         <p>Seun Jayeoba</p>
         <p>Seun Jayeoba</p>
         <p>Seun Jayeoba</p>
-        
       </div>
     </>
   );

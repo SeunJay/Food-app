@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 import Home from "./components/pages/Home";
-import NavBar from "./components/layouts/NavBar";
+//import NavBar from "./components/layouts/NavBar";
 import Signup from "./components/pages/Signup";
 import Signin from "./components/pages/Signin";
 import UserDashboard from "./components/layouts/UserDashboard"

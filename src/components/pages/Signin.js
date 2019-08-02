@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../components/layouts/NavBar";
 
 export default function Signin() {
+  console.log(process.env)
   return (
     <>
       <NavBar brand="Omnifood" />
