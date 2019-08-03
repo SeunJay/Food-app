@@ -1,6 +1,7 @@
 import React from "react";
 //import TextField from "../layouts/TextField";
 import NavBar from "../../components/layouts/NavBar";
+import {API} from "../../config"
 
 export default function Signup() {
   console.log(process.env.REACT_APP_API_URL);
@@ -57,7 +58,7 @@ export default function Signup() {
             </form>
           </div>
         </div>
-      {process.env.REACT_APP_API_URL}
+      {API}
       </div>
     </>
   );
