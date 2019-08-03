@@ -3,7 +3,7 @@ import React from "react";
 import NavBar from "../../components/layouts/NavBar";
 
 export default function Signup() {
-  console.log(process.env)
+  console.log(process.env.REACT_APP_API_URL);
   return (
     <>
       <NavBar brand="Omnifood" />
@@ -57,6 +57,7 @@ export default function Signup() {
             </form>
           </div>
         </div>
+      {process.env.REACT_APP_API_URL}
       </div>
     </>
   );
