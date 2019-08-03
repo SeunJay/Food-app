@@ -18,6 +18,28 @@ export default function Signup() {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
+  const { firstName, lastName, email, password } = values;
+
+  const signup = user => {
+    //console.log(firstName, lastName, email, password)
+    fetch(`${API}/signup`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(user)
+    }).then(res => {
+      return res.json()
+    }).catch(err=>console.log(err))
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    signup({firstName, lastName, email, password})
+  
+  };
+
   return (
     <>
       <NavBar brand="Omnifood" />
@@ -25,7 +47,7 @@ export default function Signup() {
         <div className="card mb-3">
           <div className="card-header text-center">Sign up</div>
           <div className="card-body">
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label className="text-warning">First Name</label>
                 <input
@@ -65,7 +87,11 @@ export default function Signup() {
                   value={values.password}
                 />
               </div>
-              <button className="btn btn-warning" style={{ color: "#fff" }}>
+              <button
+                className="btn btn-warning"
+                style={{ color: "#fff" }}
+                type="submit"
+              >
                 Submit
               </button>
             </form>
