@@ -2,7 +2,7 @@ import React, { useState } from "react";
 //import TextField from "../layouts/TextField";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
-import { API } from "../../config";
+import {signup} from "../../auth"
 
 export default function Signup() {
   console.log(process.env.REACT_APP_API_URL);
@@ -21,21 +21,7 @@ export default function Signup() {
 
   const { firstName, lastName, email, password, success, error } = values;
 
-  const signup = user => {
-    //console.log(firstName, lastName, email, password)
-    return fetch(`${API}/signup`, {
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(user)
-    })
-      .then(res => {
-        return res.json();
-      })
-      .catch(err => console.log(err));
-  };
+  
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -138,7 +124,6 @@ export default function Signup() {
             </form>
           </div>
         </div>
-        {API}
         {JSON.stringify(values)}
       </div>
     </>
