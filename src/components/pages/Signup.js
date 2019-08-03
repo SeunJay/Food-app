@@ -18,26 +18,64 @@ export default function Signup() {
     setValues({ ...values, error: false, [name]: event.target.value });
   };
 
-  const { firstName, lastName, email, password } = values;
+  const { firstName, lastName, email, password, success, error } = values;
 
   const signup = user => {
     //console.log(firstName, lastName, email, password)
-    fetch(`${API}/signup`, {
+    return fetch(`${API}/signup`, {
       method: "POST",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json"
       },
       body: JSON.stringify(user)
-    }).then(res => {
-      return res.json()
-    }).catch(err=>console.log(err))
+    })
+      .then(res => {
+        return res.json();
+      })
+      .catch(err => console.log(err));
   };
 
   const handleSubmit = event => {
     event.preventDefault();
-    signup({firstName, lastName, email, password})
-  
+    setValues({...values, error: false})
+    signup({ firstName, lastName, email, password }).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error, success: false });
+      } else {
+        setValues({
+          ...values,
+          firstName: "",
+          lastName: "",
+          email: "",
+          password: "",
+          error: "",
+          success: true
+        });
+      }
+    });
+  };
+
+  const showError = () => {
+    return (
+      <div
+        className="alert alert-danger"
+        style={{ display: error ? "" : "none" }}
+      >
+        {values.error}
+      </div>
+    );
+  };
+
+  const showSuccess = () => {
+    return (
+      <div
+        className="alert alert-info"
+        style={{ display: success ? "" : "none" }}
+      >
+        You have successfully created an account. Please signin
+      </div>
+    );
   };
 
   return (
@@ -45,6 +83,8 @@ export default function Signup() {
       <NavBar brand="Omnifood" />
       <div className="container col-md-8 offset-md-2">
         <div className="card mb-3">
+          {showError()}
+          {showSuccess()}
           <div className="card-header text-center">Sign up</div>
           <div className="card-body">
             <form onSubmit={handleSubmit}>
