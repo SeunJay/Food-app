@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 //import TextField from "../layouts/TextField";
+import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import { API } from "../../config";
 
@@ -38,7 +39,7 @@ export default function Signup() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    setValues({...values, error: false})
+    setValues({ ...values, error: false });
     signup({ firstName, lastName, email, password }).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, success: false });
@@ -73,7 +74,7 @@ export default function Signup() {
         className="alert alert-info"
         style={{ display: success ? "" : "none" }}
       >
-        You have successfully created an account. Please signin
+        You have successfully created an account. Please <Link to="/signin" className="text-warning">signin</Link>
       </div>
     );
   };
