@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
+import { signout } from "../../auth";
 
-function NavBar({ brand }) {
+function NavBar({ brand, history }) {
   return (
     <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
       <div className="container">
@@ -39,6 +40,19 @@ function NavBar({ brand }) {
                 <i className="fas fa-question" /> Sign up
               </Link>
             </li>
+            <li className="nav-item">
+              <span
+                to="/signup"
+                className="nav-link"
+                // style={isActive(history, "/signup")}
+                style={{ fontWeight: "800", cursor: "pointer" }}
+                onClick={() => signout(() => {
+                  history.push("/")
+                })}
+              >
+                Sign out
+              </span>
+            </li>
           </ul>
         </div>
       </div>
@@ -46,4 +60,4 @@ function NavBar({ brand }) {
   );
 }
 
-export default NavBar;
+export default withRouter(NavBar);
