@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../../components/layouts/NavBar";
 import { Redirect } from "react-router-dom";
-import { signin } from "../../auth";
+import { signin, authenticate } from "../../auth";
 
 export default function Signin() {
   const [values, setValues] = useState({
@@ -25,9 +25,11 @@ export default function Signin() {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
-        setValues({
-          ...values,
-          redirectToReferrer: true
+        authenticate(data, () => {
+          setValues({
+            ...values,
+            redirectToReferrer: true
+          });
         });
       }
     });
