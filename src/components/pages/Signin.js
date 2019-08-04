@@ -65,10 +65,10 @@ export default function Signin() {
       <NavBar brand="Omnifood" />
       <div className="container">
         <div className="card mb-3">
+          {showLoading()}
           <div className="card-header text-center">Sign in</div>
           <div className="card-body">
             {showError()}
-            {showLoading()}
             {redirectUser()}
             <form onSubmit={handleSubmit}>
               <div className="form-group">
