@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import Signup from "./components/pages/Signup";
 import Signin from "./components/pages/Signin";
 import UserDashboard from "./components/layouts/UserDashboard"
+import PrivateRoute from "./auth/PrivateRoute"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -17,7 +18,7 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/signin" component={Signin} />
-          <Route exact path="/userdashboard" component={UserDashboard} />
+          <PrivateRoute exact path="/userdashboard" component={UserDashboard} />
         </Switch>
       </div>
     </Router>
