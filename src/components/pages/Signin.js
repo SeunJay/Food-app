@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import NavBar from "../../components/layouts/NavBar";
 import { Redirect } from "react-router-dom";
-import { signin, authenticate } from "../../auth";
+import { signin, authenticate, isAuthenticated } from "../../auth";
 
 export default function Signin() {
   const [values, setValues] = useState({
