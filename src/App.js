@@ -5,7 +5,7 @@ import Home from "./components/pages/Home";
 import Signup from "./components/pages/Signup";
 import Signin from "./components/pages/Signin";
 import UserDashboard from "./components/layouts/UserDashboard";
-import AdminDashboard from "./components/layouts/UserDashboard";
+import AdminDashboard from "./components/layouts/AdminDashboard";
 import PrivateRoute from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
