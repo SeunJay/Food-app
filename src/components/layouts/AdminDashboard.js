@@ -19,7 +19,7 @@ function AdminDashboard({ history }) {
           </li>
           <li className="list-group-item">
             <Link className="nav-link" to="/create/product">
-              Create Product
+              Create Food
             </Link>
           </li>
         </ul>
@@ -49,7 +49,7 @@ function AdminDashboard({ history }) {
             className="navbar-brand"
             // style={isActive(history, "/")}
           >
-            Hello {firstName}
+            Dashboard
           </Link>
           <div>
             <ul className="navbar-nav mr-auto">
@@ -59,15 +59,15 @@ function AdminDashboard({ history }) {
               </Link> */}
               </li>
               <li className="nav-item">
-                <Link
+                <span
                   to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signin")}
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  {email}
-                </Link>
+                  Hello {firstName}
+                </span>
               </li>
               <li className="nav-item">
                 <Link
