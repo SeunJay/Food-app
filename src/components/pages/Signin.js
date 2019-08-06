@@ -66,6 +66,10 @@ export default function Signin() {
         return <Redirect to="/userdashboard" />;
       }
     }
+
+    if(isAuthenticated()){
+      return <Redirect to="/" />;
+    }
   };
 
   return (
