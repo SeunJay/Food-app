@@ -6,6 +6,7 @@ import Signup from "./components/pages/Signup";
 import Signin from "./components/pages/Signin";
 import UserDashboard from "./components/layouts/UserDashboard";
 import AdminDashboard from "./components/layouts/AdminDashboard";
+import AddCategory from "./admin/AddCategory"
 import PrivateRoute from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -20,11 +21,20 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/signin" component={Signin} />
-          <PrivateRoute exact path="/userdashboard" component={UserDashboard} />
+          <PrivateRoute
+            exact
+            path="/userdashboard"
+            component={UserDashboard}
+          />
           <AdminRoute
             exact
             path="/admindashboard"
             component={AdminDashboard}
+          />
+          <AdminRoute
+            exact
+            path="/create/category"
+            component={AddCategory}
           />
         </Switch>
       </div>
