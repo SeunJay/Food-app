@@ -1,9 +1,10 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated } from "../../auth/index";
+import { signout } from "../../auth";
 import "./dashboard.css";
 
-export default function UserDashboard() {
+ function UserDashboard({history}) {
   const {
     user: { firstName, email, role }
   } = isAuthenticated();
@@ -15,7 +16,9 @@ export default function UserDashboard() {
             to="/"
             className="navbar-brand"
             // style={isActive(history, "/")}
-          >Hello {firstName}</Link>
+          >
+            Hello {firstName}
+          </Link>
           <div>
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
@@ -36,10 +39,15 @@ export default function UserDashboard() {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/signout"
+                  to="/"
                   className="nav-link"
                   // style={isActive(history, "/signup")}
                   style={{ fontWeight: "800" }}
+                  onClick={() =>
+                    signout(() => {
+                      history.push("/");
+                    })
+                  }
                 >
                   <i className="fas fa-question" /> Sign out
                 </Link>
@@ -62,7 +70,7 @@ export default function UserDashboard() {
         <ul className="list-group">
           <li className="list-group-item">{firstName}</li>
           <li className="list-group-item">{email}</li>
-          <li className="list-group-item">{role === 1 ? "Admin": "User"}</li>
+          <li className="list-group-item">{role === 1 ? "Admin" : "User"}</li>
         </ul>
       </div>
 
@@ -75,3 +83,5 @@ export default function UserDashboard() {
     </>
   );
 }
+
+export default withRouter(UserDashboard)
