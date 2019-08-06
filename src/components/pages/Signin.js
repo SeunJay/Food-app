@@ -60,7 +60,11 @@ export default function Signin() {
 
   const redirectUser = () => {
     if (redirectToReferrer) {
-      return <Redirect to="/" />;
+      if (user && user.role === 1) {
+        return <Redirect to="/admindashboard" />;
+      } else {
+        return <Redirect to="/userdashboard" />;
+      }
     }
   };
 
