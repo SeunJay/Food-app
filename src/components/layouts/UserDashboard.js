@@ -1,8 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { isAuthenticated } from "../../auth/index";
 import "./dashboard.css";
 
 export default function UserDashboard() {
+  const {
+    user: { firstName, email, role }
+  } = isAuthenticated();
   return (
     <>
       <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
@@ -11,7 +15,7 @@ export default function UserDashboard() {
             to="/"
             className="navbar-brand"
             // style={isActive(history, "/")}
-          />
+          >Hello {firstName}</Link>
           <div>
             <ul className="navbar-nav mr-auto">
               <li className="nav-item">
@@ -27,7 +31,7 @@ export default function UserDashboard() {
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  User Email
+                  {email}
                 </Link>
               </li>
               <li className="nav-item">
@@ -44,49 +48,29 @@ export default function UserDashboard() {
           </div>
         </div>
       </nav>
-      <div class="sidebar">
-        <a class="active" href="#home">
+      {/* <div className="sidebar">
+        <Link className="active" href="#home">
           Home
-        </a>
-        <a href="#news">News</a>
-        <a href="#contact">Contact</a>
-        <a href="#about">About</a>
+        </Link>
+        <Link href="#news">News</Link>
+        <Link href="#contact">Contact</Link>
+        <Link href="#about">About</Link>
+      </div> */}
+
+      <div className="card mb-5">
+        <h3 className="card-header">User Information</h3>
+        <ul className="list-group">
+          <li className="list-group-item">{firstName}</li>
+          <li className="list-group-item">{email}</li>
+          <li className="list-group-item">{role === 1 ? "Admin": "User"}</li>
+        </ul>
       </div>
 
-      <div class="content">
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
-        <p>Seun Jayeoba</p>
+      <div className="card mb-5">
+        <h3 className="card-header">Purchase</h3>
+        <ul className="list-group">
+          <li className="list-group-item">history</li>
+        </ul>
       </div>
     </>
   );
