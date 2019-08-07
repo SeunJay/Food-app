@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { isAuthenticated } from "../auth";
 import { Link, withRouter } from "react-router-dom";
 import { signout } from "../auth";
+import { createCategory } from "./apiAdmin";
 
 function AddCategory({ history }) {
   const [name, setName] = useState("");
@@ -20,19 +21,31 @@ function AddCategory({ history }) {
     event.preventDefault();
     setErrors("");
     setSuccess(false);
+    //make request to api to create category
+    createCategory(user._id, token, { name }).then(data => {
+      if (data.error) {
+        setErrors(true);
+      } else {
+        setErrors("");
+        setSuccess(true);
+      }
+      setName("");
+    });
   };
 
   const newCategoryForm = () => {
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="text-muted">Name</label>
+          <label className="text-muted">Food Category Name</label>
           <input
             type="text"
             name="name"
             className="form-control"
             onChange={handleChange}
             value={name}
+            autoFocus
+            required
           />
         </div>
         <button className="btn btn-outline-warning">Create Category</button>
@@ -40,6 +53,40 @@ function AddCategory({ history }) {
     );
   };
 
+  const clearErrorMessage = () => {
+    setTimeout(() => {
+      setErrors("");
+    }, 5000);
+  };
+
+  const clearSuccessMessage = () => {
+    setTimeout(() => {
+      setSuccess("");
+    }, 5000);
+  };
+
+  const showSuccess = () => {
+    clearSuccessMessage();
+    if (success) {
+      return (
+        <h3 className="text-success center" style={{ textAlign: "center" }}>
+          {name} is created
+        </h3>
+      );
+    }
+  };
+
+  const showError = () => {
+    clearErrorMessage();
+    if (error) {
+      return (
+        <h3 className="text-danger center" style={{ textAlign: "center" }}>
+          Category should be unique
+        </h3>
+      );
+    }
+  };
+  console.log(name);
   return (
     <>
       <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
@@ -88,8 +135,12 @@ function AddCategory({ history }) {
           </div>
         </div>
       </nav>
+      <Link className="btn btn-outline-warning mt-3 mx-4" to="/admindashboard">
+        Go Back
+      </Link>
+      {showSuccess()}
+      {showError()}
       <div className="row">
-        <Link className="btn btn-outline-warning" to="/admindashboard">Go Back</Link>
         <div className="col-md-8 offset-md-2 mt-5">{newCategoryForm()}</div>
       </div>
     </>
