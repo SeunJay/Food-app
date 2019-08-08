@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../../auth";
 
@@ -21,28 +21,36 @@ function NavBar({ brand, history }) {
               </Link>
             </li> */}
             {!isAuthenticated() && (
-              <Fragment style={{ display: "inline-Block" }}>
-                <li className="nav-item">
-                  <Link
-                    to="/signin"
-                    className="nav-link"
-                    // style={isActive(history, "/signin")}
-                    style={{ fontWeight: "800" }}
+              <React.Fragment>
+                <div>
+                  <li
+                    className="nav-item"
+                    style={{ display: "inline-Block" }}
                   >
-                    <i className="fas fa-plus" /> Sign in
-                  </Link>
-                </li>
-                <li className="nav-item">
-                  <Link
-                    to="/signup"
-                    className="nav-link"
-                    // style={isActive(history, "/signup")}
-                    style={{ fontWeight: "800" }}
+                    <Link
+                      to="/signin"
+                      className="nav-link"
+                      // style={isActive(history, "/signin")}
+                      style={{ fontWeight: "800" }}
+                    >
+                      <i className="fas fa-plus" /> Sign in
+                    </Link>
+                  </li>
+                  <li
+                    className="nav-item"
+                    style={{ display: "inline-Block" }}
                   >
-                    <i className="fas fa-question" /> Sign up
-                  </Link>
-                </li>
-              </Fragment>
+                    <Link
+                      to="/signup"
+                      className="nav-link"
+                      // style={isActive(history, "/signup")}
+                      style={{ fontWeight: "800" }}
+                    >
+                      <i className="fas fa-question" /> Sign up
+                    </Link>
+                  </li>
+                </div>
+              </React.Fragment>
             )}
             {isAuthenticated() && (
               <li className="nav-item">
