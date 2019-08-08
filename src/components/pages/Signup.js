@@ -5,7 +5,6 @@ import NavBar from "../../components/layouts/NavBar";
 import {signup} from "../../auth"
 
 export default function Signup() {
-  console.log(process.env.REACT_APP_API_URL);
   const [values, setValues] = useState({
     firstName: "",
     lastName: "",
