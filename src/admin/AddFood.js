@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
 import { Link, withRouter } from "react-router-dom";
 import { signout } from "../auth";
-import { createProduct } from "./apiAdmin";
+import { createProduct, getCategories } from "./apiAdmin";
 
 function AddFood({ history }) {
   const [values, setValues] = useState({
@@ -36,8 +36,19 @@ function AddFood({ history }) {
     formData
   } = values;
 
+  //load categories and set form data
+  const init = () => {
+    getCategories().then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+      } else {
+        setValues({ ...values, categories: data, formData: new FormData() });
+      }
+    });
+  };
+
   useEffect(() => {
-    setValues({ ...values, formData: new FormData() });
+    init();
   }, []);
 
   const handleChange = name => event => {
@@ -71,10 +82,7 @@ function AddFood({ history }) {
 
   const newPostForm = () => (
     <div className="container col-md-8 offset-md-2 card-header">
-      <form
-        className="mb-3"
-        onSubmit={handleSubmit}
-      >
+      <form className="mb-3" onSubmit={handleSubmit}>
         <h4>Post Photo</h4>
         <div className="form-group">
           <label htmlFor="" className="btn btn-warning">
@@ -122,14 +130,13 @@ function AddFood({ history }) {
           <label htmlFor="" className="text-muted">
             Category
           </label>
-          <select
-            onChange={handleChange("category")}
-            className="form-control"
-          >
-            <option value="5d4a0ef9342507db8d39a331">African cuisine</option>
-            <option value="5d4a1006342507db8d39a332">
-              Continental cuisine
-            </option>
+          <select onChange={handleChange("category")} className="form-control">
+            <option>Please select</option>
+            {categories.map((c, i) => (
+              <option key={i} value={c._id}>
+                {c.name}
+              </option>
+            ))}
           </select>
         </div>
         <div className="form-group">
@@ -145,6 +152,25 @@ function AddFood({ history }) {
         </div>
         <button className="btn btn-outline-warning">Create Food</button>
       </form>
+    </div>
+  );
+  
+
+  const showError = () => (
+    <div
+      className="text-danger center"
+      style={{ display: error ? "" : "none", textAlign: "center" }}
+    >
+      <h4>{error}</h4>
+    </div>
+  );
+
+  const showSuccess = () => (
+    <div
+      className="text-success center"
+      style={{ display: createdProduct ? "" : "none", textAlign: "center"}}
+    >
+      <h4>{createdProduct} is created</h4>
     </div>
   );
 
@@ -196,13 +222,17 @@ function AddFood({ history }) {
           </div>
         </div>
       </nav>
-      <Link className="btn btn-outline-warning mt-3 mx-4" to="/admindashboard">
+      <Link
+        className="btn btn-outline-warning mt-3 mx-4"
+        to="/admindashboard"
+      >
         Go Back
       </Link>
-      {/* {showSuccess()}
-      {showError()} */}
-      <div className="row col-md-8 offset-md-2">
-        <div className="container" />
+      {showSuccess()}
+      {showError()}
+      <div className="row">
+        <div className="col-md-8 offset-md-2" />
+
         {newPostForm()}
       </div>
     </>
