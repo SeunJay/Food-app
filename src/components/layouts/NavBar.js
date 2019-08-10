@@ -49,6 +49,19 @@ function NavBar({ brand, history }) {
                       <i className="fas fa-question" /> Sign up
                     </Link>
                   </li>
+                  <li
+                    className="nav-item"
+                    style={{ display: "inline-Block" }}
+                  >
+                    <Link
+                      to="/shop"
+                      className="nav-link"
+                      // style={isActive(history, "/signup")}
+                      style={{ fontWeight: "800" }}
+                    >
+                      <i className="fas fa-question" /> Shop
+                    </Link>
+                  </li>
                 </div>
               </React.Fragment>
             )}
