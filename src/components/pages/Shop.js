@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../layouts/NavBar";
 import { getCategories } from "../layouts/apiLayout";
+import Checkbox from "../layouts/Checkbox"
 
 export default function Shop() {
   const [categories, setCategories] = useState([]);
@@ -22,12 +23,11 @@ export default function Shop() {
     init()
   }, []);
 
-  console.log(categories)
   return (
     <>
       <NavBar brand="Omnifood" />
       <div className="row">
-        <div className="col-4">left sidebar</div>
+        <div className="col-4"><Checkbox category={categories}/></div>
         <div className="col-8">right sidebar</div>
       </div>
     </>
