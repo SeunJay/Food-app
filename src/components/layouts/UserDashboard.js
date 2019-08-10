@@ -1,10 +1,31 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated } from "../../auth/index";
 import { signout } from "../../auth";
 import "./dashboard.css";
+import { getFoods } from "./apiLayout";
+import Cards from "./Cards";
 
 function UserDashboard({ history }) {
+  const [foodByArrival, setFoodByArrival] = useState([]);
+  const [error, setError] = useState(false);
+
+  const loadFoodsByArrival = () => {
+    getFoods("createdAt").then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setFoodByArrival(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadFoodsByArrival();
+  }, []);
+
+  console.log(foodByArrival);
+
   const {
     user: { firstName, email, role }
   } = isAuthenticated();
@@ -17,7 +38,9 @@ function UserDashboard({ history }) {
         </h4>
         <ul className="list-group">
           <li className="list-group-item" style={{ textAlign: "center" }}>
-            <Link className="nav-link">My Cart</Link>
+            <Link className="nav-link" to="/cart">
+              My Cart
+            </Link>
           </li>
           <li className="list-group-item" style={{ textAlign: "center" }}>
             <Link className="nav-link" to="/profile/update">
@@ -38,9 +61,7 @@ function UserDashboard({ history }) {
         <ul className="list-group">
           <li className="list-group-item">{firstName}</li>
           <li className="list-group-item">{email}</li>
-          <li className="list-group-item">
-            {role === 1 ? "Admin" : "User"}
-          </li>
+          <li className="list-group-item">{role === 1 ? "Admin" : "User"}</li>
         </ul>
       </div>
     );
@@ -107,11 +128,24 @@ function UserDashboard({ history }) {
           </div>
         </div>
       </nav>
-      <div className="row">
-        <div className="col-3">{userLinks()}</div>
-        <div className="col-9">
-          {userInfo()}
-          {purchaseHistory()}
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-3">{userLinks()}</div>
+          <div className="col-9">
+            {userInfo()}
+            {purchaseHistory()}
+          </div>
+        </div>
+      </div>
+
+      <div className="container-fluid">
+        <h4 className="mb-4" style={{ textAlign: "center" }}>
+          See Foods
+        </h4>
+        <div className="row">
+          {foodByArrival.map((food, i) => (
+            <Cards key={i} food={food} />
+          ))}
         </div>
       </div>
     </>
