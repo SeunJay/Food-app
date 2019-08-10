@@ -12,7 +12,7 @@ export default function Cards({food}) {
           <p>{food.description}</p>
           <p>${food.price}</p>
           <Link to="/">
-            <button className="btn btn-outline-primary mt-2 mb-2">
+            <button className="btn btn-outline-primary mt-2 mb-2 mr-2">
               View Food
             </button>
             <button className="btn btn-outline-warning mt-2 mb-2">
