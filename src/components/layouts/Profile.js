@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import NavBar from "./NavBar";
 
 export default function Profile() {
   return (
     <div>
-      Hi there
+      <NavBar brand="Omnifood"/>
     </div>
   )
 }
