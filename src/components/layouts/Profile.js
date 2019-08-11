@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "./NavBar";
 import { isAuthenticated } from "../../auth/index";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { readUser, update, updateUser } from "../../user/apiuser";
 
 export default function Profile({ match }) {
@@ -35,11 +35,36 @@ export default function Profile({ match }) {
     init(match.params.userId);
   }, []);
 
-  const handleChange = event => {};
+  const handleChange = name => event => {
+    setValues({ ...values, error: false, [name]: event.target.value });
+  };
 
   const handleSubmit = event => {
     event.preventDefault();
+    update(match.params.userId, token, { firstName, lastName, password }).then(
+      data => {
+        if (data.error) {
+          console.log(data.error);
+        } else {
+          updateUser(data, () => {
+            setValues({
+              ...values,
+              firstName: data.firstName,
+              lastName: data.lastName,
+              password: data.password,
+              success: true
+            });
+          });
+        }
+      }
+    );
   };
+
+  const redirectUser = (success)=>{
+    if(success){
+      return <Redirect to="/userdashboard"/>
+    }
+  }
 
   const profileUpdate = (firstName, lastName, password) => {
     return (
@@ -94,6 +119,7 @@ export default function Profile({ match }) {
       <NavBar brand="Omnifood" />
       <h2 className="mb-4 text-center">Profile Update</h2>
       {profileUpdate()}
+      {redirectUser(success)}
     </div>
   );
 }
