@@ -6,6 +6,7 @@ import Shop from "../src/components/pages/Shop"
 import Signup from "./components/pages/Signup";
 import Signin from "./components/pages/Signin";
 import UserDashboard from "./components/layouts/UserDashboard";
+import Profile from "./components/layouts/Profile"
 import AdminDashboard from "./components/layouts/AdminDashboard";
 import AddCategory from "./admin/AddCategory";
 import AddFood from "./admin/AddFood";
@@ -28,6 +29,11 @@ function App() {
             exact
             path="/userdashboard"
             component={UserDashboard}
+          />
+          <PrivateRoute
+            exact
+            path="/profile/update"
+            component={Profile}
           />
           <AdminRoute
             exact
