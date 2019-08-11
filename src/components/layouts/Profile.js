@@ -39,6 +39,7 @@ export default function Profile({ match }) {
   return (
     <div>
       <NavBar brand="Omnifood" />
+      {JSON.stringify(values)}
     </div>
   );
 }
