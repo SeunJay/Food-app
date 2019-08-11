@@ -32,7 +32,7 @@ function App() {
           />
           <PrivateRoute
             exact
-            path="/profile/update"
+            path="/profile/:userId"
             component={Profile}
           />
           <AdminRoute
