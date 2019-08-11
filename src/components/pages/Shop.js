@@ -27,7 +27,9 @@ export default function Shop() {
     <>
       <NavBar brand="Omnifood" />
       <div className="row">
-        <div className="col-4"><Checkbox category={categories}/></div>
+        <div className="col-4">
+          <h4>Filter by Categories</h4>
+          <Checkbox categories={categories}/></div>
         <div className="col-8">right sidebar</div>
       </div>
     </>
