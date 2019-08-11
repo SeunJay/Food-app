@@ -27,7 +27,7 @@ function UserDashboard({ history }) {
   console.log(foodByArrival);
 
   const {
-    user: { firstName, email, role }
+    user: { _id, firstName, email, role }
   } = isAuthenticated();
 
   const userLinks = () => {
@@ -43,7 +43,7 @@ function UserDashboard({ history }) {
             </Link>
           </li>
           <li className="list-group-item" style={{ textAlign: "center" }}>
-            <Link className="nav-link" to="/profile/update">
+            <Link className="nav-link" to={`/profile/${_id}`}>
               Update Profile
             </Link>
           </li>
