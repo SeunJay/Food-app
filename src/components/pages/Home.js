@@ -19,14 +19,14 @@ export default function Home() {
           {/* <Link className="btn btn-full js--scroll-to-plans" href="/">
             I'm hungry
           </Link> */}
-          <input
+          {/* <input
             type="search"
             className="search-bar"
             placeholder="search for food"
           />
           <button className="search-button" type="button">
             search
-          </button>
+          </button> */}
           <Search />
         </div>
       </section>
