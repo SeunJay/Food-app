@@ -4,6 +4,7 @@ import { getCategories, getFilteredFoods } from "../layouts/apiLayout";
 import Checkbox from "../layouts/Checkbox";
 import { prices } from "../layouts/fixedPrices";
 import RadioBox from "../layouts/RadioBox";
+import Cards from "../layouts/Cards"
 
 export default function Shop() {
   const [myFilters, setMyFilters] = useState({
