@@ -14,6 +14,7 @@ export default function Shop() {
   const [error, setError] = useState(false);
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
+  const [size, setSize] = useState(0);
   const [filteredResults, setFilteredResults] = useState([]);
 
   const init = () => {
@@ -33,6 +34,22 @@ export default function Shop() {
         setError(data.error);
       } else {
         setFilteredResults(data.data);
+        setSize(data.size);
+        setSkip(0);
+      }
+    });
+  };
+
+  const loadMore = () => {
+    //console.log(newFilters);
+    let toSkip = skip + limit;
+    getFilteredFoods(toSkip, limit, myFilters.filters).then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setFilteredResults([...filteredResults, ...data.data]);
+        setSize(data.size);
+        setSkip(toSkip);
       }
     });
   };
@@ -68,10 +85,21 @@ export default function Shop() {
     return array;
   };
 
+  const loadMoreButton = () => {
+    return (
+      size > 0 &&
+      size >= limit && (
+        <button onClick={loadMore} className="btn btn-warning mb-5">
+          Load more
+        </button>
+      )
+    );
+  };
+
   return (
     <>
       <NavBar brand="Omnifood" />
-      <div className="">
+      <div className="container-fluid">
         <div className="row">
           <div className="col-4">
             <h4>Filter by Categories</h4>
@@ -96,6 +124,8 @@ export default function Shop() {
                 <Cards key={i} food={food} />
               ))}
             </div>
+            <hr />
+            {loadMoreButton()}
           </div>
         </div>
       </div>
