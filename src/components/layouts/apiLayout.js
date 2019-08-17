@@ -1,4 +1,5 @@
 import { API } from "../../config";
+import queryString from "querystring";
 
 export const getFoods = sortBy => {
   return fetch(`${API}/foods?sortBy=${sortBy}&order=desc&limit=6`, {
@@ -33,6 +34,18 @@ export const getFilteredFoods = (skip, limit, filters = {}) => {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => console.log(err));
+};
+
+export const list = params => {
+  const query = queryString.stringify(params);
+  console.log(query);
+  return fetch(`${API}/foods?${query}`, {
+    method: "GET"
   })
     .then(res => {
       return res.json();

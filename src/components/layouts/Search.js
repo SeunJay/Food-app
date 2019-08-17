@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getCategories } from "./apiLayout";
+import { getCategories, list } from "./apiLayout";
 
 export default function Search() {
   const [data, setData] = useState({
@@ -29,13 +29,25 @@ export default function Search() {
   }, []);
 
   const searchData = () => {
-    console.log("search loading...")
-    console.log(category, search)
+    // console.log("search loading...")
+    // console.log(category, search)
+    if (search) {
+      list({ search: search || undefined, category: category }).then(
+        response => {
+          if (response.error) {
+            console.log(response.error);
+          } else {
+            setData({ ...data, results: response, searched: true });
+          }
+        }
+      );
+    }
   };
+
 
   const searchSubmit = event => {
     event.preventDefault();
-    searchData()
+    searchData();
   };
 
   const handleChange = name => event => {
@@ -81,7 +93,8 @@ export default function Search() {
 
   return (
     <div className="row">
-      <div className="container">{searchForm()}</div>
+      <div className="container">{searchForm()}
+      </div>
     </div>
   );
 }
