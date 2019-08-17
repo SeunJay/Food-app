@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import NavBar from "../layouts/NavBar";
-import { getCategories } from "../layouts/apiLayout";
+import { getCategories, getFilteredFoods } from "../layouts/apiLayout";
 import Checkbox from "../layouts/Checkbox";
 import { prices } from "../layouts/fixedPrices";
 import RadioBox from "../layouts/RadioBox";
@@ -11,6 +11,9 @@ export default function Shop() {
   });
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
+  const [limit, setLimit] = useState(6);
+  const [skip, setSkip] = useState(0);
+  const [filteredResults, setFilteredResults] = useState(0);
 
   const init = () => {
     getCategories().then(data => {
@@ -22,7 +25,19 @@ export default function Shop() {
     });
   };
 
+  const loadFilteredData = newFilters => {
+    //console.log(newFilters);
+    getFilteredFoods(skip, limit, newFilters).then(data => {
+      if (data.error) {
+        setError(data.error);
+      } else {
+        setFilteredResults(data);
+      }
+    });
+  };
+
   useEffect(() => {
+    loadFilteredData(skip, limit, myFilters.filters);
     init();
   }, []);
 
@@ -35,19 +50,21 @@ export default function Shop() {
       newFilters.filters[filterBy] = priceValues;
     }
 
+    loadFilteredData(myFilters.filters);
+
     setMyFilters(newFilters);
   };
 
   const handlePrice = id => {
     const data = prices;
-    let array = []
+    let array = [];
 
-    for(let key in data){
-      if(data[key]._id === parseInt(id)){
-        array = data[key].array
+    for (let key in data) {
+      if (data[key]._id === parseInt(id)) {
+        array = data[key].array;
       }
     }
-    return array
+    return array;
   };
 
   return (
@@ -71,7 +88,7 @@ export default function Shop() {
               />
             </div>
           </div>
-          <div className="col-8">{JSON.stringify(myFilters)}</div>
+          <div className="col-8">{JSON.stringify(filteredResults)}</div>
         </div>
       </div>
     </>
