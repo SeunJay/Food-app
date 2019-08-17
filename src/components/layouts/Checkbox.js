@@ -16,10 +16,10 @@ const Checkbox = ({ categories, handleFilters }) => {
     }
     // console.log(newCheckedCategoryId);
     setCheked(newCheckedCategoryId);
-    handleFilters(newCheckedCategoryId)
+    handleFilters(newCheckedCategoryId);
   };
 
-  console.log(checked)
+  console.log(checked);
 
   return categories.map((c, i) => (
     <li key={i} className="list-unstyled">
@@ -28,6 +28,7 @@ const Checkbox = ({ categories, handleFilters }) => {
         value={checked.indexOf(c._id === -1)}
         type="checkbox"
         className="form-check-input"
+        style={{ cursor: "pointer" }}
       />
       <label className="form-check-label">{c.name}</label>
     </li>
