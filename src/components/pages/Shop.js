@@ -4,6 +4,9 @@ import { getCategories } from "../layouts/apiLayout";
 import Checkbox from "../layouts/Checkbox";
 
 export default function Shop() {
+  const [myFilters, setMyFilters] = useState({
+    filters: { category: [], price: [] }
+  });
   const [categories, setCategories] = useState([]);
   const [error, setError] = useState(false);
 
@@ -22,7 +25,9 @@ export default function Shop() {
   }, []);
 
   const handleFilters = (filters, filterBy) => {
-    console.log(filters, filterBy);
+    const newFilters = { ...myFilters };
+    newFilters.filters[filterBy] = filters;
+    setMyFilters(newFilters)
   };
 
   return (
@@ -37,7 +42,7 @@ export default function Shop() {
               handleFilters={filters => handleFilters(filters, "category")}
             />
           </div>
-          <div className="col-8">right sidebar</div>
+          <div className="col-8">{JSON.stringify(myFilters)}</div>
         </div>
       </div>
     </>
