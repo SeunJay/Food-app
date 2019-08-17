@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import NavBar from "../layouts/NavBar";
 import { getCategories } from "../layouts/apiLayout";
 import Checkbox from "../layouts/Checkbox";
+import { prices } from "../layouts/fixedPrices";
 
 export default function Shop() {
   const [myFilters, setMyFilters] = useState({
@@ -27,7 +28,7 @@ export default function Shop() {
   const handleFilters = (filters, filterBy) => {
     const newFilters = { ...myFilters };
     newFilters.filters[filterBy] = filters;
-    setMyFilters(newFilters)
+    setMyFilters(newFilters);
   };
 
   return (
