@@ -3,6 +3,7 @@ import React from "react";
 //import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import "./Home.css";
+import Search from "../layouts/Search";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
           <button className="search-button" type="button">
             search
           </button>
+          <Search />
         </div>
       </section>
     </>
