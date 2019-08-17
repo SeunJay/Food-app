@@ -44,7 +44,7 @@ export const getFilteredFoods = (skip, limit, filters = {}) => {
 export const list = params => {
   const query = queryString.stringify(params);
   console.log(query);
-  return fetch(`${API}/foods?${query}`, {
+  return fetch(`${API}/foods/search?${query}`, {
     method: "GET"
   })
     .then(res => {
