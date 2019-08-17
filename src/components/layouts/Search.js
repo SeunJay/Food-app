@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { getCategories, list } from "./apiLayout";
+import Cards from "../layouts/Cards";
 
 export default function Search() {
   const [data, setData] = useState({
@@ -44,7 +45,6 @@ export default function Search() {
     }
   };
 
-
   const searchSubmit = event => {
     event.preventDefault();
     searchData();
@@ -52,6 +52,16 @@ export default function Search() {
 
   const handleChange = name => event => {
     setData({ ...data, [name]: event.target.value, searched: false });
+  };
+
+  const searchFoods = (results = []) => {
+    return (
+      <div className="row" style={{marginTop: "40px"}}>
+        {results.map((food, i) => (
+          <Cards key={i} food={food} />
+        ))}
+      </div>
+    );
   };
 
   const searchForm = () => (
@@ -93,8 +103,8 @@ export default function Search() {
 
   return (
     <div className="row">
-      <div className="container">{searchForm()}
-      </div>
+      <div className="container">{searchForm()}</div>
+      <div className="container-fluid mb-3">{searchFoods(results)}</div>
     </div>
   );
 }
