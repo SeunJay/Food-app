@@ -16,19 +16,19 @@ export default function Home() {
             <br />
             Hello super healthy meals.
           </h1>
-          {/* <Link className="btn btn-full js--scroll-to-plans" href="/">
-            I'm hungry
-          </Link> */}
-          {/* <input
-            type="search"
-            className="search-bar"
-            placeholder="search for food"
-          />
-          <button className="search-button" type="button">
-            search
-          </button> */}
-          <Search />
         </div>
+      </section>
+      <section
+        className="container-fluid"
+        style={{ width: "100%", height: "100%", border: "1px solid #000" }}
+      >
+        <div className="row">
+          <h2 style={{ margin: "0 auto" }}>Searched foods go here</h2>
+          <div className="container-fluid">
+            <Search />
+          </div>
+        </div>
+        <div className="container-fluid mb-3">kjddjkdjdjkdkj</div>
       </section>
     </>
   );
