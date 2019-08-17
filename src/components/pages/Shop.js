@@ -4,7 +4,7 @@ import { getCategories, getFilteredFoods } from "../layouts/apiLayout";
 import Checkbox from "../layouts/Checkbox";
 import { prices } from "../layouts/fixedPrices";
 import RadioBox from "../layouts/RadioBox";
-import Cards from "../layouts/Cards"
+import Cards from "../layouts/Cards";
 
 export default function Shop() {
   const [myFilters, setMyFilters] = useState({
@@ -14,7 +14,7 @@ export default function Shop() {
   const [error, setError] = useState(false);
   const [limit, setLimit] = useState(6);
   const [skip, setSkip] = useState(0);
-  const [filteredResults, setFilteredResults] = useState(0);
+  const [filteredResults, setFilteredResults] = useState([]);
 
   const init = () => {
     getCategories().then(data => {
@@ -32,7 +32,7 @@ export default function Shop() {
       if (data.error) {
         setError(data.error);
       } else {
-        setFilteredResults(data);
+        setFilteredResults(data.data);
       }
     });
   };
@@ -89,7 +89,14 @@ export default function Shop() {
               />
             </div>
           </div>
-          <div className="col-8">{JSON.stringify(filteredResults)}</div>
+          <div className="col-8">
+            <h2 className="mb-4">Foods</h2>
+            <div className="row">
+              {filteredResults.map((food, i) => (
+                <Cards key={i} food={food} />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </>
