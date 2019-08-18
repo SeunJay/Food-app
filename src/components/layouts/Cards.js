@@ -16,7 +16,7 @@ export default function Cards({food}) {
               View Food
             </button>
             <button className="btn btn-outline-warning mt-2 mb-2">
-              Add to card
+              Add to cart
             </button>
           </Link>
         </div>
