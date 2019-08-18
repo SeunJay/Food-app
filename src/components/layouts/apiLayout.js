@@ -52,3 +52,13 @@ export const list = params => {
     })
     .catch(err => console.log(err));
 };
+
+export const readFood = foodId => {
+  return fetch(`${API}/food/${foodId}`, {
+    method: "GET"
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => console.log(err));
+};
