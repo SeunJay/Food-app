@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import NavBar from "./NavBar";
 import {readFood} from "../layouts/apiLayout"
+import Cards from "./Cards"
 
 export default function Food({match}) {
   const [food, setFood] = useState({});
@@ -24,9 +25,14 @@ export default function Food({match}) {
   console.log(food)
 
   return (
-    <div>
-      <NavBar brand="Omnifood"/>
+    <>
+      <NavBar brand="Omnifood" />
       <h1 className="mb-4 text-center">Food Page</h1>
-    </div>
+      <div className="row">
+        <div className="col-5 mb-4" style={{margin: "0 auto"}}>
+          {food && food.description && <Cards food={food} showViewFoodButton={false}/>}
+        </div>
+      </div>
+    </>
   );
 }
