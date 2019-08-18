@@ -144,7 +144,9 @@ function UserDashboard({ history }) {
         </h4>
         <div className="row">
           {foodByArrival.map((food, i) => (
-            <Cards key={i} food={food} />
+            <div className="col-4 mb-4">
+              <Cards key={i} food={food} />
+            </div>
           ))}
         </div>
       </div>
