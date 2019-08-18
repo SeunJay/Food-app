@@ -10,6 +10,7 @@ import Profile from "./components/layouts/Profile"
 import AdminDashboard from "./components/layouts/AdminDashboard";
 import AddCategory from "./admin/AddCategory";
 import AddFood from "./admin/AddFood";
+import Food from "../src/components/layouts/Food"
 import PrivateRoute from "./auth/PrivateRoute";
 import AdminRoute from "./auth/AdminRoute";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -25,16 +26,13 @@ function App() {
           <Route exact path="/shop" component={Shop} />
           <Route exact path="/signup" component={Signup} />
           <Route exact path="/signin" component={Signin} />
+          <Route exact path="/food/:foodId" component={Food} />
           <PrivateRoute
             exact
             path="/userdashboard"
             component={UserDashboard}
           />
-          <PrivateRoute
-            exact
-            path="/profile/:userId"
-            component={Profile}
-          />
+          <PrivateRoute exact path="/profile/:userId" component={Profile} />
           <AdminRoute
             exact
             path="/admindashboard"
