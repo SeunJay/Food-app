@@ -121,7 +121,9 @@ export default function Shop() {
             <h2 className="mb-4">Foods</h2>
             <div className="row">
               {filteredResults.map((food, i) => (
-                <Cards key={i} food={food} />
+                <div key={i} className="col-4 mb-3">
+                  <Cards food={food} />
+                </div>
               ))}
             </div>
             <hr />
