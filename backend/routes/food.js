@@ -11,6 +11,7 @@ const {
   listRelated,
   listCategories,
   listBySearch,
+  listSearch,
   photo
 } = require("../controllers/food");
 
@@ -25,6 +26,7 @@ router.delete("/food/:foodId/:userId", requireSignin, isAuth, isAdmin, remove);
 router.put("/food/:foodId/:userId", requireSignin, isAuth, isAdmin, update);
 
 router.get("/foods", list);
+router.get("/foods/search", listSearch);
 router.get("/foods/related/:foodId", listRelated);
 router.get("/foods/categories", listCategories);
 router.post("/foods/by/search", listBySearch);
