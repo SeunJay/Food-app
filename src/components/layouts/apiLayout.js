@@ -62,3 +62,23 @@ export const readFood = foodId => {
     })
     .catch(err => console.log(err));
 };
+
+
+
+export const listRelated = (foodId) => {
+  return fetch(`${API}/foods/related/${foodId}`, {
+    method: "GET"
+  })
+    .then(res => {
+      return res.json();
+    })
+    .catch(err => console.log(err));
+};
+
+
+
+
+
+
+
+
