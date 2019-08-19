@@ -1,12 +1,13 @@
 const formidable = require("formidable");
 const _ = require("lodash");
 const fs = require("fs");
+const Food = require("../models/Food");
 const { errorHandler } = require("../helpers/dbErrorHandler");
 
-const Food = require("../models/Food");
+
 
 exports.foodById = (req, res, next, id) => {
-  Food.findById(id).exec((err, food) => {
+  Food.findById(id).populate("category").exec((err, food) => {
     if (err || !food) {
       return res.status(400).json({
         error: "Food not found"
@@ -222,7 +223,7 @@ exports.listBySearch = (req, res) => {
     .exec((err, data) => {
       if (err) {
         return res.status(400).json({
-          error: "Products not found"
+          error: "Food not found"
         });
       }
       res.json({
@@ -238,4 +239,27 @@ exports.photo = (req, res, next) => {
     return res.send(req.food.photo.data);
   }
   next();
+};
+
+exports.listSearch = (req, res) => {
+  // create query object to hold search value and category value
+  const query = {};
+  // assign search value to query.name
+  if (req.query.search) {
+    query.name = { $regex: req.query.search, $options: "i" };
+    // assigne category value to query.category
+    if (req.query.category && req.query.category != "All") {
+      query.category = req.query.category;
+    }
+    // find the food based on query object with 2 properties
+    // search and category
+    Food.find(query, (err, foods) => {
+      if (err) {
+        return res.status(400).json({
+          error: errorHandler(err)
+        });
+      }
+      res.json(foods);
+    }).select("-photo");
+  }
 };
