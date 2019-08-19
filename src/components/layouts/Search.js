@@ -23,7 +23,6 @@ export default function Search() {
     });
   };
 
-  console.log(categories);
 
   useEffect(() => {
     loadCategories();
@@ -38,12 +37,15 @@ export default function Search() {
           if (response.error) {
             console.log(response.error);
           } else {
+            console.log(response)
             setData({ ...data, results: response, searched: true });
           }
         }
       );
     }
   };
+
+  console.log(results)
 
   const searchSubmit = event => {
     event.preventDefault();
@@ -56,7 +58,7 @@ export default function Search() {
 
   const searchFoods = (results = []) => {
     return (
-      <div className="row" style={{marginTop: "40px"}}>
+      <div className="row">
         {results.map((food, i) => (
           <Cards key={i} food={food} />
         ))}
