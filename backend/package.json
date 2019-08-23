@@ -23,6 +23,7 @@
     "express": "^4.17.1",
     "express-jwt": "^5.3.1",
     "express-validator": "^5.3.1",
+    "fast-safe-stringify": "^2.0.6",
     "formidable": "^1.2.1",
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",

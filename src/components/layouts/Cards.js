@@ -1,9 +1,11 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Redirect } from "react-router-dom";
 import ShowImage from "./ShowImage";
 import moment from "moment";
+import { addFood } from "./cartHelpers";
 
 export default function Cards({ food, showViewFoodButton = true }) {
+  const [redirect, setRedirect] = useState(false);
   const showViewButton = showViewFoodButton => {
     return (
       showViewFoodButton && (
@@ -20,10 +22,28 @@ export default function Cards({ food, showViewFoodButton = true }) {
     );
   };
 
+
+  //console.log(food);
+
+  const addToCart = food => {
+    addFood(food, () => {
+      setRedirect(true);
+    });
+  };
+  
+
+  const shouldRedirect = redirect => {
+    if(redirect) {
+      return <Redirect to="/cart"/>
+    }
+  }
+
+
   return (
     <div className="card">
       <div className="card-header">{food.name}</div>
       <div className="card-body">
+        {shouldRedirect(redirect)}
         <ShowImage item={food} url="food" />
         <p className="lead mt-2">{food.description.substring(0, 50)}</p>
         <p className="black-9">${food.price}</p>
@@ -32,11 +52,14 @@ export default function Cards({ food, showViewFoodButton = true }) {
         </p>
         <p className="black-8">Add on {moment(food.createdAt).fromNow()}</p>
         {showStock(food.quantity)}
-        <br/>
+        <br />
         <Link to={`/food/${food._id}`}>
           {showViewButton(showViewFoodButton)}
         </Link>
-        <button className="btn btn-outline-warning mt-2 mb-2">
+        <button
+          onClick={addToCart}
+          className="btn btn-outline-warning mt-2 mb-2"
+        >
           Add to cart
         </button>
       </div>

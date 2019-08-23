@@ -26,6 +26,7 @@ export default function Food({ match }) {
     });
   };
 
+  console.log(food)
   console.log(relatedFood)
 
   useEffect(() => {
