@@ -4,21 +4,46 @@ const uuidv1 = require("uuid/v1");
 
 const userSchema = new mongoose.Schema(
   {
-    firstName: {
+    name: {
       type: String,
       require: true,
       trim: true
     },
-    lastName: {
+    businessName: {
       type: String,
       require: true,
       trim: true
     },
-    email: {
+    businessEmail: {
+      type: String,
+      require: true,
+      trim: true,
+      unique: true
+    },
+    businessAddress: {
       type: String,
       required: true,
-      trim: true,
-      unique: 32
+      trim: true
+    },
+    businessPhone: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    country: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    state: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    city: {
+      type: String,
+      required: true,
+      trim: true
     },
     hashed_password: {
       type: String,
@@ -45,9 +70,9 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-
 //virtual field
-userSchema.virtual("password")
+userSchema
+  .virtual("password")
   .set(function(password) {
     this._password = password;
     this.salt = uuidv1();
@@ -59,8 +84,8 @@ userSchema.virtual("password")
   });
 
 userSchema.methods = {
-  authenticate: function(plainText){
-    return this.encryptPassword(plainText) === this.hashed_password
+  authenticate: function(plainText) {
+    return this.encryptPassword(plainText) === this.hashed_password;
   },
 
   encryptPassword: function(password) {
@@ -76,4 +101,4 @@ userSchema.methods = {
   }
 };
 
-module.exports = mongoose.model("users", userSchema)
+module.exports = mongoose.model("users", userSchema);
