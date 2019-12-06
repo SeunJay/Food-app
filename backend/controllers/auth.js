@@ -7,6 +7,7 @@ exports.signup = async (req, res) => {
   const user = new User(req.body);
   user.save((err, user) => {
     if (err) {
+      console.log("hheheheheheh")
       return res.status(400).json({
         err: errorHandler(err)
       });
@@ -20,8 +21,8 @@ exports.signup = async (req, res) => {
 
 exports.signin = (req, res) => {
   //find a user based on email
-  const { email, password } = req.body;
-  User.findOne({ email }, (err, user) => {
+  const { businessEmail, password } = req.body;
+  User.findOne({ businessEmail }, (err, user) => {
     if (err || !user) {
       return res
         .status(400)
@@ -43,8 +44,8 @@ exports.signin = (req, res) => {
     res.cookie("t", token, { expire: new Date() + 9999 });
 
     //return response with user and token to frontend client
-    const { _id, firstName, email, role } = user;
-    return res.json({ token, user: { _id, email, firstName, role } });
+    const { _id, name, businessEmail, role } = user;
+    return res.json({ token, user: { _id, businessEmail, name, role } });
   });
 };
 

@@ -27,7 +27,7 @@ function UserDashboard({ history }) {
   console.log(foodByArrival);
 
   const {
-    user: { _id, firstName, email, role }
+    user: { _id, name, businessEmail, role }
   } = isAuthenticated();
 
   const userLinks = () => {
@@ -59,8 +59,8 @@ function UserDashboard({ history }) {
           User Information
         </h3>
         <ul className="list-group">
-          <li className="list-group-item">{firstName}</li>
-          <li className="list-group-item">{email}</li>
+          <li className="list-group-item">{name}</li>
+          <li className="list-group-item">{businessEmail}</li>
           <li className="list-group-item">{role === 1 ? "Admin" : "User"}</li>
         </ul>
       </div>
@@ -106,7 +106,7 @@ function UserDashboard({ history }) {
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {firstName}
+                  Hello {name}
                 </span>
               </li>
               <li className="nav-item">

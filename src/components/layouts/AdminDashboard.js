@@ -6,7 +6,7 @@ import "./dashboard.css";
 
 function AdminDashboard({ history }) {
   const {
-    user: { firstName, email, role }
+    user: { name, businessEmail, role }
   } = isAuthenticated();
 
   const adminLinks = () => {
@@ -32,8 +32,8 @@ function AdminDashboard({ history }) {
       <div className="card mb-5">
         <h3 className="card-header">User Information</h3>
         <ul className="list-group">
-          <li className="list-group-item">{firstName}</li>
-          <li className="list-group-item">{email}</li>
+          <li className="list-group-item">{name}</li>
+          <li className="list-group-item">{businessEmail}</li>
           <li className="list-group-item">{role === 1 ? "Admin" : "User"}</li>
         </ul>
       </div>
@@ -66,7 +66,7 @@ function AdminDashboard({ history }) {
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {firstName}
+                  Hello {name}
                 </span>
               </li>
               <li className="nav-item">
@@ -90,9 +90,7 @@ function AdminDashboard({ history }) {
       </nav>
       <div className="row">
         <div className="col-3">{adminLinks()}</div>
-        <div className="col-9">
-          {adminInfo()}
-        </div>
+        <div className="col-9">{adminInfo()}</div>
       </div>
     </>
   );
