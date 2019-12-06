@@ -20,7 +20,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <NavBar brand="Omnifood" /> */}
+        {/* <NavBar brand="Paystand" /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/shop" component={Shop} />

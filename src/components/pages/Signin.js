@@ -74,7 +74,7 @@ export default function Signin() {
 
   return (
     <>
-      <NavBar brand="Omnifood" />
+      <NavBar brand="Paystand." />
       <div className="container">
         <div className="card mb-3">
           {showLoading()}

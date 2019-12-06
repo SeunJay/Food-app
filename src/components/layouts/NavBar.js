@@ -33,7 +33,7 @@ function NavBar({ brand, history }) {
                       // style={isActive(history, "/signin")}
                       style={{ fontWeight: "800" }}
                     >
-                      <i className="fas fa-plus" /> Sign in
+                      <i className="fas fa-plus" /> Distributor Login
                     </Link>
                   </li>
                   <li
@@ -46,10 +46,10 @@ function NavBar({ brand, history }) {
                       // style={isActive(history, "/signup")}
                       style={{ fontWeight: "800" }}
                     >
-                      <i className="fas fa-question" /> Sign up
+                      <i className="fas fa-question" /> Distrubutor Sign up
                     </Link>
                   </li>
-                  <li
+                  {/*<li
                     className="nav-item"
                     style={{ display: "inline-Block" }}
                   >
@@ -61,7 +61,7 @@ function NavBar({ brand, history }) {
                     >
                       <i className="fas fa-question" /> Shop
                     </Link>
-                  </li>
+                  </li>*/}
                 </div>
               </React.Fragment>
             )}

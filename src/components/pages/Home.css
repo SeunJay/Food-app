@@ -3,9 +3,9 @@
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.7)
     ),
-    url("../../img/hero.jpg");
+    url("../../img/bg.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../../img/hero.jpg");
+    url("../../img/bg.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
@@ -55,12 +55,20 @@ input[type="submit"]:active {
 .caption {
   margin-top: 0;
   margin-bottom: 20px;
-  text-align: left;
-  margin-left: 45px;
+  text-align: center;
+  /* margin-left: 45px; */
   color: #fff;
-  font-size: 240%;
+  
   word-spacing: 4px;
   letter-spacing: 1px;
+}
+
+.herotext1 {
+  font-size: 240%;
+}
+
+.herotext2 {
+  font-size: 100%;
 }
 
 
