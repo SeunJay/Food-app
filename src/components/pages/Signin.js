@@ -5,14 +5,20 @@ import { signin, authenticate, isAuthenticated } from "../../auth";
 
 export default function Signin() {
   const [values, setValues] = useState({
-    email: "tony@gmail.com",
+    businessEmail: "tony@gmail.com",
     password: "amolo90",
     error: "",
     loading: false,
     redirectToReferrer: false
   });
 
-  const { email, password, loading, error, redirectToReferrer } = values;
+  const {
+    businessEmail,
+    password,
+    loading,
+    error,
+    redirectToReferrer
+  } = values;
 
   const { user } = isAuthenticated();
 
@@ -23,7 +29,7 @@ export default function Signin() {
   const handleSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
-    signin({ email, password }).then(data => {
+    signin({ businessEmail, password }).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
@@ -86,10 +92,10 @@ export default function Signin() {
               <div className="form-group">
                 <label className="text-warning">Email</label>
                 <input
-                  onChange={handleChange("email")}
+                  onChange={handleChange("businessEmail")}
                   type="email"
                   className="form-control"
-                  value={values.email}
+                  value={values.businessEmail}
                   name="email"
                 />
               </div>
