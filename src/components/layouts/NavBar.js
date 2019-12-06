@@ -4,7 +4,7 @@ import { signout, isAuthenticated } from "../../auth";
 
 function NavBar({ brand, history }) {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
+    <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-3 py-0 sticky-top">
       <div className="container">
         <Link
           to="/"

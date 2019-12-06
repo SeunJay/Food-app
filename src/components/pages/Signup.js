@@ -102,7 +102,7 @@ export default function Signup() {
 
   return (
     <>
-      <NavBar brand="Omnifood" />
+      <NavBar brand="Paystand." />
       <div className="container col-md-8 offset-md-2">
         <div className="card mb-3">
           {showError()}
@@ -192,7 +192,7 @@ export default function Signup() {
 
               <div className="form-group">
                 <label className="text-warning">About</label>
-                <input
+                <textArea
                   onChange={handleChange("about")}
                   type="text"
                   className="form-control"
