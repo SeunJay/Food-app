@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../../auth";
+import "./Signin.css";
 
 export default function Signin() {
   const [values, setValues] = useState({
@@ -78,45 +80,54 @@ export default function Signin() {
     }
   };
 
+
   return (
     <>
       <NavBar brand="Paystand." />
-      <div className="container">
-        <div className="card mb-3">
+      <div className="div-wrapper">
+      <div className="container col-md-6">
+        <div className="mb-3 shadow rounded my-lg-5">
           {showLoading()}
-          <div className="card-header text-center">Sign in</div>
+          <div className="card-header bg-white text-center"><strong>SIGN INTO YOUR DASHBOARD</strong></div>
           <div className="card-body">
             {showError()}
             {redirectUser()}
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label className="text-warning">Email</label>
+            <div className="form-group mb-4">
                 <input
                   onChange={handleChange("businessEmail")}
                   type="email"
                   className="form-control"
+                  placeholder="Business Email"
                   value={values.businessEmail}
                   name="email"
                 />
               </div>
 
-              <div className="form-group">
-                <label className="text-warning">Password</label>
+              <div className="form-group mb-4">
                 <input
                   onChange={handleChange("password")}
                   type="password"
                   className="form-control"
+                  placeholder="Enter Password"
                   value={values.password}
                   name="password"
                 />
               </div>
+              <div style={{textAlign: "center"}}>
               <button className="btn btn-warning" style={{ color: "#fff" }}>
-                Sign in
+                Sign In
               </button>
+              </div>
             </form>
           </div>
         </div>
-      </div>
+
+        <div className="mb-5 text-info" style={{ textAlign: "center" }}>
+          Don't have a merchant account? <Link to="/signup" style={{color: "#DD4F05"}}>Sign Up</Link>
+        </div>
+        </div>
+        </div>
     </>
   );
 }

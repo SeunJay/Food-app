@@ -1,6 +1,6 @@
 import React from "react";
 //import NavBar from "../layouts/NavBar";
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import "./Home.css";
 // import Search from "../layouts/Search";
@@ -16,11 +16,14 @@ export default function Home() {
             <br />
             <span className="herotext2">Get your stocks without stress.</span>
           </h1>
+          <div className="btn-wrapper">
+          <Link to="/signin">
+          <button className="btn btn-danger">Sign into the easy way!</button>
+        </Link>
+        </div>
         </div>
       </section>
-
       
-
       {/*<section
         className="container-fluid"
         style={{ width: "100%", height: "100%", border: "1px solid #000" }}

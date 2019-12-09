@@ -1,14 +1,15 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../../auth";
+import "./Navbar.css";
 
 function NavBar({ brand, history }) {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-danger mb-3 py-0 sticky-top">
+    <nav className="navbar-gt navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top">
       <div className="container">
         <Link
           to="/"
-          className="navbar-brand"
+          className="navbar-brand text-bold"
           // style={isActive(history, "/")}
         >
           {brand}
@@ -24,29 +25,27 @@ function NavBar({ brand, history }) {
               <React.Fragment>
                 <div>
                   <li
-                    className="nav-item"
+                    className="nav-item text-light"
                     style={{ display: "inline-Block" }}
                   >
                     <Link
                       to="/signin"
                       className="nav-link"
                       // style={isActive(history, "/signin")}
-                      style={{ fontWeight: "800" }}
-                    >
-                      <i className="fas fa-plus" /> Distributor Login
+                      // style={{ fontWeight: "800" }}
+                    >Sign In
                     </Link>
                   </li>
                   <li
-                    className="nav-item"
+                    className="nav-item text-light"
                     style={{ display: "inline-Block" }}
                   >
                     <Link
                       to="/signup"
                       className="nav-link"
                       // style={isActive(history, "/signup")}
-                      style={{ fontWeight: "800" }}
-                    >
-                      <i className="fas fa-question" /> Distrubutor Sign up
+                      // style={{ fontWeight: "800" }}
+                    >Sign Up
                     </Link>
                   </li>
                   {/*<li
@@ -78,7 +77,7 @@ function NavBar({ brand, history }) {
                     })
                   }
                 >
-                  Sign out
+                  Sign Out
                 </span>
               </li>
             )}

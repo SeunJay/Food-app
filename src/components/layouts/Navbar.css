@@ -1,0 +1,9 @@
+.navbar-gt{
+ background: #DD4F05 !important;
+ /* height: 50px; */
+ height: 2%;
+}
+
+.navbar-dark .navbar-nav .nav-link{
+    color: #ffffff !important;
+}

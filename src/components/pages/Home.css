@@ -1,3 +1,10 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
 #section-background {
   background-image: -webkit-linear-gradient(
       rgba(0, 0, 0, 0.7),
@@ -5,27 +12,53 @@
     ),
     url("../../img/bg.jpg");
   background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../../img/bg.jpg");
+    url("../../img/bg_home.jpg");
   background-size: cover;
   background-position: center;
   height: 100vh;
+  width: 100%;
   background-attachment: fixed;
   box-shadow: 1px 3px 3px 3px #000;
-  margin-top: -20px
+  margin-top: -20px;
 }
+
+/* .section {
+  width: 100vw;
+  justify-content: center;
+  align-items: center;
+} */
 
 .hero-text-box {
   position: absolute;
-  width: 1140px;
-  top: 45%;
-  left: 46%;
-  -webkit-transform: translate(-50%, -50%);
+  width: 100vw;
+  top: 35%;
+  justify-content: center;
+  align-items: center;
+  /* -webkit-transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
-} */
+  transform: translate(-50%, -50%); */
+}
 
+.btn-wrapper {
+  width: 100vw;
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
 
-.btn-full:link,
+.btn {
+  background-color: #DD4F05 !important;
+  border: 1px solid #DD4F05 !important;
+  font-size: 1.3rem !important;
+}
+
+.caption {
+  text-align: center;
+  color: #fff;
+  word-spacing: 4px;
+  letter-spacing: 1px;
+}
+/* .btn-full:link,
 .btn-full:visited,
 input[type="submit"] {
   background-color: #e67e22;
@@ -47,21 +80,13 @@ input[type="submit"]:hover,
 input[type="submit"]:active {
   background-color: #cf6d17;
 }
+
  .btn-full:hover,
 .btn-full:active {
   border: 1px solid #cf6d17;
 }
 
-.caption {
-  margin-top: 0;
-  margin-bottom: 20px;
-  text-align: center;
-  /* margin-left: 45px; */
-  color: #fff;
-  
-  word-spacing: 4px;
-  letter-spacing: 1px;
-}
+*/
 
 .herotext1 {
   font-size: 240%;
@@ -70,7 +95,6 @@ input[type="submit"]:active {
 .herotext2 {
   font-size: 100%;
 }
-
 
 /* Big tablet to 1200px (widths smaller taht the 1140px row) */
 @media only screen and (max-width: 1200px) {
