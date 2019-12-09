@@ -263,3 +263,24 @@ exports.listSearch = (req, res) => {
     }).select("-photo");
   }
 };
+
+
+exports.decreaseQuantity = (req, res, next) => {
+  let bulkOps = req.body.order.foods.map(item => {
+    return {
+      updateOne: {
+        filter: { _id: item._id },
+        update: { $inc: { quantity: -item.count, sold: +item.count } }
+      }
+    };
+  });
+
+  Food.bulkWrite(bulkOps, {}, (error, products) => {
+    if (error) {
+      return res.status(400).json({
+        error: "Could not update product"
+      });
+    }
+    next();
+  });
+};

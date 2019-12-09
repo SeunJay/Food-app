@@ -1,55 +1,18 @@
 import React from "react";
-import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated } from "../../auth/index";
+import { Link, withRouter } from "react-router-dom";
+import { foodTotal } from "./cartHelpers";
+import Cart from "./Cart";
 import { signout } from "../../auth";
-import "./dashboard.css";
 
-function AdminDashboard({ history }) {
+function DashboardNav({ history, cart }) {
   const {
-    user: { name, businessEmail, role }
+    user: { name, businessEmail }
   } = isAuthenticated();
-
-  const adminLinks = () => {
-    return (
-      <div className="card">
-        <h4 className="card-header">Admin Links</h4>
-        <ul className="list-group">
-          <li className="list-group-item">
-            <Link className="nav-link" to="/create/category">
-              Create Category
-            </Link>
-          </li>
-          <li className="list-group-item">
-            <Link className="nav-link" to="/create/product">
-              Create Food
-            </Link>
-          </li>
-          <li className="list-group-item">
-            <Link className="nav-link" to="/admin/orders">
-              View Orders
-            </Link>
-          </li>
-        </ul>
-      </div>
-    );
-  };
-
-  const adminInfo = () => {
-    return (
-      <div className="card mb-5">
-        <h3 className="card-header">User Information</h3>
-        <ul className="list-group">
-          <li className="list-group-item">{name}</li>
-          <li className="list-group-item">{businessEmail}</li>
-          <li className="list-group-item">{role === 1 ? "Admin" : "User"}</li>
-        </ul>
-      </div>
-    );
-  };
-
+  console.log(cart);
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
         <div className="container">
           <Link
             to="/"
@@ -76,6 +39,21 @@ function AdminDashboard({ history }) {
                   Hello {name}
                 </span>
               </li>
+              {cart && (
+                <li className="nav-item">
+                  <Link
+                    to="/cart"
+                    className="nav-link"
+                    // style={isActive(history, "/signup")}
+                    style={{ fontWeight: "800" }}
+                  >
+                    <i className="fas fa-question" /> Order{" "}
+                    <sup>
+                      <small className="cart-badge">{foodTotal()}</small>
+                    </sup>
+                  </Link>
+                </li>
+              )}
               <li className="nav-item">
                 <Link
                   to="/"
@@ -95,12 +73,8 @@ function AdminDashboard({ history }) {
           </div>
         </div>
       </nav>
-      <div className="row">
-        <div className="col-3">{adminLinks()}</div>
-        <div className="col-9">{adminInfo()}</div>
-      </div>
     </>
   );
 }
 
-export default withRouter(AdminDashboard);
+export default withRouter(DashboardNav);

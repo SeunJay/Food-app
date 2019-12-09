@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "bootstrap": "^4.3.1",
+    "braintree": "^2.21.0",
+    "braintree-web-drop-in-react": "^1.1.0",
     "circular-json": "^0.5.9",
     "fast-safe-stringify": "^2.0.6",
     "moment": "^2.24.0",
