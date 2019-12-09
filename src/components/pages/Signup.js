@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import {signup} from "../../auth";
-// import "./Signup.css";
+import "./Signup.css";
 
 export default function Signup() {
   const [values, setValues] = useState({

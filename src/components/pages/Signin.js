@@ -84,7 +84,7 @@ export default function Signin() {
   return (
     <>
       <NavBar brand="Paystand." />
-      <div className="div-wrapper">
+      <div className="div-wrapper1">
       <div className="container col-md-6">
         <div className="mb-3 shadow rounded my-lg-5">
           {showLoading()}
