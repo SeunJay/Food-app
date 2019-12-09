@@ -33,6 +33,8 @@ function AddCategory({ history }) {
     });
   };
 
+  
+
   const newCategoryForm = () => {
     return (
       <form onSubmit={handleSubmit}>
@@ -113,7 +115,7 @@ function AddCategory({ history }) {
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {user.firstName}
+                  Hello {user.name}
                 </span>
               </li>
               <li className="nav-item">

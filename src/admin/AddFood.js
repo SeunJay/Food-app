@@ -22,6 +22,8 @@ function AddFood({ history }) {
 
   const { user, token } = isAuthenticated();
 
+  console.log(user)
+
   const {
     name,
     description,
@@ -83,7 +85,7 @@ function AddFood({ history }) {
   const newPostForm = () => (
     <div className="container col-md-8 offset-md-2 card-header">
       <form className="mb-3" onSubmit={handleSubmit}>
-        <h4>Post Photo</h4>
+        {/* <h4>Post Photo</h4>
         <div className="form-group">
           <label htmlFor="" className="btn btn-warning">
             <input
@@ -93,7 +95,7 @@ function AddFood({ history }) {
               accept="image/*"
             />
           </label>
-        </div>
+        </div> */}
         <div className="form-group">
           <label htmlFor="" className="text-muted">
             Name
@@ -200,7 +202,7 @@ function AddFood({ history }) {
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {user.firstName}
+                  Hello {user.name}
                 </span>
               </li>
               <li className="nav-item">
