@@ -54,9 +54,9 @@ function UserDashboard() {
   const userLinks = () => {
     return (
       <div className="card">
-        <h4 className="card-header" style={{ textAlign: "center" }}>
-          User Links
-        </h4>
+      <h4 className="card-header" style={{ textAlign: "center" }}>
+      Dashboard
+    </h4>
         <ul className="list-group">
           <li className="list-group-item" style={{ textAlign: "center" }}>
             <Link className="nav-link" to="/cart">
