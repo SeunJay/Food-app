@@ -5,12 +5,12 @@
     overflow-x: hidden;
   }
   
-.div-wrapper {
+.div-wrapper1 {
     background-image: -webkit-linear-gradient(
         rgba(0, 0, 0, 0.7),
         rgba(231, 187, 187, 0.7)
       ),
-      url("../../img/agreement.svg");
+      url("../../img/container_ship.svg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
       url("../../img/container_ship.svg");
     background-size: cover;
@@ -21,3 +21,9 @@
     box-shadow: 1px 3px 3px 3px #000;
     margin-top: -20px;
   }
+
+  .btn-sign {
+    background-color: #DD4F05 !important;
+    border: 1px solid #DD4F05 !important;
+    font-size: 1.3rem !important;
+}

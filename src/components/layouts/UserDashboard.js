@@ -23,7 +23,7 @@ function UserDashboard() {
           className="card-header bg-warning text-center"
           style={{ color: "#fff" }}
         >
-          User Links
+          Dashboard
         </h4>
         <ul className="list-group">
           <li className="list-group-item" style={{ textAlign: "center" }}>

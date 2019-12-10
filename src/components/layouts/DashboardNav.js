@@ -12,14 +12,15 @@ function DashboardNav({ history, cart }) {
   console.log(cart);
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
+      <nav className="navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top" style={{backgroundColor:"#DD4F05"}}>
         <div className="container">
           <Link
             to="/"
             className="navbar-brand"
             // style={isActive(history, "/")}
+            style={{fontSize:"2rem", fontWeight: "700"}}
           >
-            Dashboard
+            Paystand.
           </Link>
           <div>
             <ul className="navbar-nav mr-auto">
@@ -33,7 +34,7 @@ function DashboardNav({ history, cart }) {
                   to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signin")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
                   Hello {name}
@@ -45,7 +46,7 @@ function DashboardNav({ history, cart }) {
                     to="/cart"
                     className="nav-link"
                     // style={isActive(history, "/signup")}
-                    style={{ fontWeight: "800" }}
+                    // style={{ fontWeight: "800" }}
                   >
                     <i className="fas fa-question" /> Order{" "}
                     <sup>
@@ -59,7 +60,7 @@ function DashboardNav({ history, cart }) {
                   to="/"
                   className="nav-link"
                   // style={isActive(history, "/signup")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                   onClick={() =>
                     signout(() => {
                       history.push("/");

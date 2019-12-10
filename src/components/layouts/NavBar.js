@@ -5,12 +5,13 @@ import "./Navbar.css";
 
 function NavBar({ brand, history }) {
   return (
-    <nav className="navbar-gt navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top">
+    <nav className="home-nav navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top">
       <div className="container">
         <Link
           to="/"
-          className="navbar-brand text-bold"
+          className="navbar-brand"
           // style={isActive(history, "/")}
+          style={{fontSize:"2rem", fontWeight: "700"}}
         >
           {brand}
         </Link>

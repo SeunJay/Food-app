@@ -84,27 +84,25 @@ export default function Signin() {
   return (
     <>
       <NavBar brand="Paystand." />
-      <div className="div-wrapper">
-        <div className="container col-md-6">
-          <div className="mb-3 shadow rounded my-lg-5">
-            {showLoading()}
-            <div className="card-header bg-white text-center">
-              <strong>SIGN INTO YOUR DASHBOARD</strong>
-            </div>
-            <div className="card-body">
-              {showError()}
-              {redirectUser()}
-              <form onSubmit={handleSubmit}>
-                <div className="form-group mb-4">
-                  <input
-                    onChange={handleChange("businessEmail")}
-                    type="email"
-                    className="form-control"
-                    placeholder="Business Email"
-                    value={values.businessEmail}
-                    name="email"
-                  />
-                </div>
+      <div className="div-wrapper1">
+      <div className="container col-md-6">
+        <div className="mb-3 shadow rounded my-lg-5">
+          {showLoading()}
+          <div className="card-header bg-white text-center"><strong>SIGN INTO YOUR DASHBOARD</strong></div>
+          <div className="card-body">
+            {showError()}
+            {redirectUser()}
+            <form onSubmit={handleSubmit}>
+            <div className="form-group mb-4">
+                <input
+                  onChange={handleChange("businessEmail")}
+                  type="email"
+                  className="form-control"
+                  placeholder="Business Email"
+                  value={values.businessEmail}
+                  name="email"
+                />
+              </div>
 
                 <div className="form-group mb-4">
                   <input
@@ -117,12 +115,9 @@ export default function Signin() {
                   />
                 </div>
                 <div style={{ textAlign: "center" }}>
-                  <button
-                    className="btn-home btn-warning"
-                    style={{ color: "#fff" }}
-                  >
-                    Sign In
-                  </button>
+                <button className="btn btn-sign btn-warning" style={{ color: "#fff" }}>
+                Sign In
+              </button>
                 </div>
               </form>
             </div>
