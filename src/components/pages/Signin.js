@@ -115,7 +115,7 @@ export default function Signin() {
                   />
                 </div>
                 <div style={{ textAlign: "center" }}>
-                <button className="btn btn-warning" style={{ color: "#fff" }}>
+                <button className="btn btn-sign btn-warning" style={{ color: "#fff" }}>
                 Sign In
               </button>
                 </div>

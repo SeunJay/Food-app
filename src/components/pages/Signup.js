@@ -216,7 +216,7 @@ export default function Signup() {
               </div>
               <div style={{textAlign: "center"}}>
               <button
-                className="btn btn-warning"
+                className="btn btn-create btn-warning"
                 style={{ color: "#fff" }}
                 type="submit"
               >
