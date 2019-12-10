@@ -5,10 +5,12 @@ import { Link } from "react-router-dom";
 import { signout } from "../auth";
 import { listOrders, getStatusValues, updateOrderStatus } from "./apiAdmin";
 import moment from "moment";
+import Spinner from "../components/layouts/Spinner";
 
 const Orders = ({ history }) => {
   const [orders, setOrders] = useState([]);
   const [statusValues, setStatusValues] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const { user, token } = isAuthenticated();
   //console.log(token)
@@ -19,6 +21,7 @@ const Orders = ({ history }) => {
         console.log(data.error);
       } else {
         setOrders(data);
+        setLoading(false);
       }
     });
   };
@@ -43,7 +46,7 @@ const Orders = ({ history }) => {
 
   const showOrdersLength = () => {
     if (orders.length > 0) {
-      return <h1 className="text-danger">Total orders: {orders.length}</h1>;
+      return <h1 className="text-warning">Total orders: {orders.length}</h1>;
     } else {
       return <h1 className="text-danger">No orders</h1>;
     }
@@ -138,7 +141,7 @@ const Orders = ({ history }) => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          {showOrdersLength()}
+          {loading ? <Spinner /> : showOrdersLength()}
           {orders.map((o, oIndex) => {
             return (
               <div
@@ -147,7 +150,7 @@ const Orders = ({ history }) => {
                 style={{ borderBottom: "5px solid indigo" }}
               >
                 <h2 className="mb-5">
-                  <span className="bg-primary">Order ID: {o._id}</span>
+                  <span className="bg-warning">Order ID: {o._id}</span>
                 </h2>
 
                 <ul className="list-group mb-2">
@@ -156,9 +159,7 @@ const Orders = ({ history }) => {
                     Transaction ID: {o.transaction_id}
                   </li>
                   <li className="list-group-item">Amount: ${o.amount}</li>
-                  <li className="list-group-item">
-                    Ordered by: {o.user.name}
-                  </li>
+                  <li className="list-group-item">Ordered by: {o.user.name}</li>
                   <li className="list-group-item">
                     Ordered on: {moment(o.createdAt).fromNow()}
                   </li>

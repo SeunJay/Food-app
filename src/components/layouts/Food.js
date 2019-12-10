@@ -38,7 +38,7 @@ export default function Food({ match }) {
 
   return (
     <>
-      <NavBar brand="Omnifood" />
+      <NavBar brand="Paystand" />
       <h1 className="mb-4 text-center">{food.name} Page</h1>
       <div className="row">
         <div className="col-8 mb-4">

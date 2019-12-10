@@ -2,7 +2,7 @@ import React from "react";
 //import NavBar from "../layouts/NavBar";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
-import "./Home.css";
+import "./Home1.css";
 // import Search from "../layouts/Search";
 
 export default function Home() {
@@ -18,7 +18,7 @@ export default function Home() {
           </h1>
           <div className="btn-wrapper">
           <Link to="/signin">
-          <button className="btn btn-danger">Sign into the easy way!</button>
+          <button className="btn btn-danger btn-home">Sign into the easy way!</button>
         </Link>
         </div>
         </div>

@@ -19,7 +19,7 @@ export default function Cards({
   const showViewButton = showViewProductButton => {
     return (
       showViewProductButton && (
-        <Link to={`/product/${food._id}`} className="mr-2">
+        <Link to={`/food/${food._id}`} className="mr-2">
           <button className="btn btn-outline-primary mt-2 mb-2">
             View Product
           </button>
@@ -62,6 +62,8 @@ export default function Cards({
       showAddToCartButton && (
         <button
           onClick={addToCart}
+          // disabled={showButton
+          // }
           className="btn btn-outline-warning mt-2 mb-2"
         >
           Make order
