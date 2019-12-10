@@ -11,6 +11,7 @@ import { isAuthenticated } from "../../auth";
 import { Link } from "react-router-dom";
 import "braintree-web";
 import DropIn from "braintree-web-drop-in-react";
+import Spinner from "./Spinner";
 
 const Checkout = ({ foods }) => {
   const [data, setData] = useState({
@@ -35,7 +36,7 @@ const Checkout = ({ foods }) => {
     });
   };
 
-  console.log(data)
+  console.log(data);
 
   useEffect(() => {
     getToken(userId, token);
@@ -176,8 +177,7 @@ const Checkout = ({ foods }) => {
     </div>
   );
 
-  const showLoading = loading =>
-    loading && <h2 className="text-danger">Loading...</h2>;
+  const showLoading = loading => loading && <Spinner />;
 
   return (
     <div>

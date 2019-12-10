@@ -11,22 +11,44 @@ function AdminDashboard({ history }) {
 
   const adminLinks = () => {
     return (
-      <div className="card">
-        <h4 className="card-header">Admin Links</h4>
+      <div className="card ml-3">
+        <h4
+          className="card-header bg-warning text-center"
+          style={{ color: "#fff" }}
+        >
+          Admin Links
+        </h4>
         <ul className="list-group">
           <li className="list-group-item">
-            <Link className="nav-link" to="/create/category">
-              Create Category
+            <Link
+              className="nav-link text-warning text-center"
+              to="/create/category"
+            >
+              Add Category
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link" to="/create/product">
-              Create Food
+            <Link
+              className="nav-link text-warning text-center"
+              to="/create/product"
+            >
+              Add Product
             </Link>
           </li>
           <li className="list-group-item">
-            <Link className="nav-link" to="/admin/orders">
+            <Link
+              className="nav-link text-warning text-center"
+              to="/admin/orders"
+            >
               View Orders
+            </Link>
+          </li>
+          <li className="list-group-item">
+            <Link
+              className="nav-link text-warning text-center"
+              to="/admin/products"
+            >
+              Manage Products
             </Link>
           </li>
         </ul>

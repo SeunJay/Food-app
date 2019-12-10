@@ -33,7 +33,8 @@ function NavBar({ brand, history }) {
                       className="nav-link"
                       // style={isActive(history, "/signin")}
                       // style={{ fontWeight: "800" }}
-                    >Sign In
+                    >
+                      Sign In
                     </Link>
                   </li>
                   <li
@@ -45,7 +46,8 @@ function NavBar({ brand, history }) {
                       className="nav-link"
                       // style={isActive(history, "/signup")}
                       // style={{ fontWeight: "800" }}
-                    >Sign Up
+                    >
+                      Sign Up
                     </Link>
                   </li>
                   {/*<li
