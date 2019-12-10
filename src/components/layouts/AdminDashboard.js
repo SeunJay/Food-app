@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import { isAuthenticated } from "../../auth/index";
 import { signout } from "../../auth";
 import "./dashboard.css";
+import capitalize from "../../user/capitalize" 
 
 function AdminDashboard({ history }) {
   const {
@@ -95,7 +96,7 @@ function AdminDashboard({ history }) {
                   style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {name}
+                  Hello {capitalize(name)}
                 </span>
               </li>
               <li className="nav-item">
