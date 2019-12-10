@@ -1,4 +1,4 @@
-/* * {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,9 +10,9 @@
         rgba(0, 0, 0, 0.7),
         rgba(0, 0, 0, 0.7)
       ),
-      url("../../img/agreement.svg");
+      url("../../img/business_deal.svg");
     background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-      url("../../img/agreement.svg");
+      url("../../img/business_deal.svg");
     background-size: cover;
     background-position: center;
     height: 100vh;
@@ -20,4 +20,10 @@
     background-attachment: fixed;
     box-shadow: 1px 3px 3px 3px #000;
     margin-top: -20px;
-  } */
+  }
+
+  .btn-create {
+    background-color: #DD4F05 !important;
+    border: 1px solid #DD4F05 !important;
+    font-size: 1.3rem !important;
+}

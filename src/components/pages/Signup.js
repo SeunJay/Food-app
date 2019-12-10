@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import {signup} from "../../auth";
-// import "./Signup.css";
+import "./Signup.css";
 
 export default function Signup() {
   const [values, setValues] = useState({
@@ -216,7 +216,7 @@ export default function Signup() {
               </div>
               <div style={{textAlign: "center"}}>
               <button
-                className="btn btn-warning"
+                className="btn btn-create btn-warning"
                 style={{ color: "#fff" }}
                 type="submit"
               >
