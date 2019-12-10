@@ -14,7 +14,11 @@ import Food from "../src/components/layouts/Food";
 import Orders from "./admin/Orders";
 import Cart from "../src/components/layouts/Cart";
 import PrivateRoute from "./auth/PrivateRoute";
+import OrderHistory from "./components/layouts/OrderHistory"
+import Products from "./components/layouts/Products"
 import AdminRoute from "./auth/AdminRoute";
+import ManageProducts from "./admin/ManageProducts";
+import UpdateProduct from "./admin/UpdateProduct";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -22,7 +26,7 @@ function App() {
   return (
     <Router>
       <div className="App">
-        {/* <NavBar brand="Paystand" /> */}
+        {/* <NavBar brand="Omnifood" /> */}
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/shop" component={Shop} />
@@ -32,10 +36,29 @@ function App() {
           <PrivateRoute exact path="/userdashboard" component={UserDashboard} />
           <PrivateRoute path="/cart" component={Cart} />
           <PrivateRoute exact path="/profile/:userId" component={Profile} />
+          <PrivateRoute
+            path="/dashboard/orderhistory"
+            component={OrderHistory}
+          />
+          <PrivateRoute
+            path="/dashboard/products"
+            component={Products}
+          />
           <AdminRoute exact path="/admindashboard" component={AdminDashboard} />
           <AdminRoute path="/admin/orders" component={Orders} />
           <AdminRoute exact path="/create/category" component={AddCategory} />
           <AdminRoute exact path="/create/product" component={AddFood} />
+          <PrivateRoute
+            path="/admin/products"
+            exact
+            component={ManageProducts}
+          />
+          <AdminRoute path="/admin/products" exact component={ManageProducts} />
+          <AdminRoute
+            path="/admin/product/update/:productId"
+            exact
+            component={UpdateProduct}
+          />
         </Switch>
       </div>
     </Router>

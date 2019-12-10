@@ -6,6 +6,7 @@ import Cards from "./Cards";
 import DashboardNav from "./DashboardNav";
 import Checkout from "./Checkout";
 
+
 export default function Cart() {
   const [items, setItems] = useState([]);
   const [run, setRun] = useState(false);
@@ -44,10 +45,10 @@ export default function Cart() {
   return (
     <Fragment>
       <DashboardNav />
-      <Link className="btn btn-outline-warning mt-3 mx-4" to="/userdashboard">
+      <Link className="btn btn-outline-warning mt-3 mx-4 mb-4" to="/userdashboard">
         Go Back
       </Link>
-      <h1 className="text-center">Order Page</h1>
+      {/* <h1 className="text-center">Order Page</h1> */}
       <div className="row">
         <div className="col-4">
           {items.length > 0 ? showFood(items) : noFoodMessage()}

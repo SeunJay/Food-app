@@ -85,7 +85,7 @@ function AddFood({ history }) {
   const newPostForm = () => (
     <div className="container col-md-8 offset-md-2 card-header">
       <form className="mb-3" onSubmit={handleSubmit}>
-        {/* <h4>Post Photo</h4>
+        <h4>Post Photo</h4>
         <div className="form-group">
           <label htmlFor="" className="btn btn-warning">
             <input
@@ -95,7 +95,7 @@ function AddFood({ history }) {
               accept="image/*"
             />
           </label>
-        </div> */}
+        </div> 
         <div className="form-group">
           <label htmlFor="" className="text-muted">
             Name
@@ -152,7 +152,7 @@ function AddFood({ history }) {
             value={quantity}
           />
         </div>
-        <button className="btn btn-outline-warning">Create Food</button>
+        <button className="btn btn-outline-warning">Add Product</button>
       </form>
     </div>
   );
