@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../../auth/index";
 import "./dashboard.css";
-import { getFoods } from "./apiLayout";
-import Cards from "./Cards";
 import DashboardNav from "./DashboardNav";
-import moment from "moment";
+import capitalize from "../../user/capitalize"; 
 
 function UserDashboard() {
 
@@ -34,12 +32,12 @@ function UserDashboard() {
 							Orders
 						</Link>
 					</li>
-					<li className="nav-item">
+					{/*<li className="nav-item">
 						<Link className="nav-link" to={`/profile/${_id}`}>
 							<span data-feather="shopping-cart"></span>
 							Update Profile
 						</Link>
-					</li>
+            </li>*/}
 					<li className="nav-item">
 						<Link className="nav-link" to="/dashboard/products">
 							<span data-feather="users"></span>

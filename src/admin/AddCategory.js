@@ -27,19 +27,18 @@ function AddCategory({ history }) {
         setErrors(true);
       } else {
         setErrors("");
+        setName("");
         setSuccess(true);
       }
-      setName("");
+      
     });
   };
-
-  
 
   const newCategoryForm = () => {
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="text-muted">Food Category Name</label>
+          <label className="text-muted">Category Name</label>
           <input
             type="text"
             name="name"
@@ -72,7 +71,7 @@ function AddCategory({ history }) {
     if (success) {
       return (
         <h3 className="text-success center" style={{ textAlign: "center" }}>
-          {name} is created
+          New category successfully created
         </h3>
       );
     }
@@ -88,10 +87,10 @@ function AddCategory({ history }) {
       );
     }
   };
-  console.log(name);
+
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
         <div className="container">
           <Link
             to="/"

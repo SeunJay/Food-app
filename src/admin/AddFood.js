@@ -3,8 +3,12 @@ import { isAuthenticated } from "../auth";
 import { Link, withRouter } from "react-router-dom";
 import { signout } from "../auth";
 import { createProduct, getCategories } from "./apiAdmin";
+import Capitalize from "../user/capitalize";
+import Spinner from "../components/layouts/Spinner";
 
 function AddFood({ history }) {
+  const [success, setSuccess] = useState(false);
+  const [error1, setError1] = useState(false);
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -22,7 +26,7 @@ function AddFood({ history }) {
 
   const { user, token } = isAuthenticated();
 
-  console.log(user)
+  console.log(user);
 
   const {
     name,
@@ -43,6 +47,7 @@ function AddFood({ history }) {
     getCategories().then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
+        setError1(true);
       } else {
         setValues({ ...values, categories: data, formData: new FormData() });
       }
@@ -78,6 +83,7 @@ function AddFood({ history }) {
           loading: false,
           createdProduct: data.name
         });
+        setSuccess(true);
       }
     });
   };
@@ -85,7 +91,7 @@ function AddFood({ history }) {
   const newPostForm = () => (
     <div className="container col-md-8 offset-md-2 card-header">
       <form className="mb-3" onSubmit={handleSubmit}>
-        <h4>Post Photo</h4>
+        <h5>Post Photo</h5>
         <div className="form-group">
           <label htmlFor="" className="btn btn-warning">
             <input
@@ -95,7 +101,7 @@ function AddFood({ history }) {
               accept="image/*"
             />
           </label>
-        </div> 
+        </div>
         <div className="form-group">
           <label htmlFor="" className="text-muted">
             Name
@@ -156,29 +162,58 @@ function AddFood({ history }) {
       </form>
     </div>
   );
-  
 
-  const showError = () => (
-    <div
-      className="text-danger center"
-      style={{ display: error ? "" : "none", textAlign: "center" }}
-    >
-      <h4>{error}</h4>
-    </div>
-  );
+  const clearErrorMessage = () => {
+    setTimeout(() => {
+      setError1(true);
+    }, 5000);
+  };
 
-  const showSuccess = () => (
-    <div
-      className="text-success center"
-      style={{ display: createdProduct ? "" : "none", textAlign: "center"}}
-    >
-      <h4>{createdProduct} is created</h4>
-    </div>
-  );
+  const clearSuccessMessage = () => {
+    setTimeout(() => {
+      setSuccess(false);
+    }, 10000);
+  };
+
+  const showError = () => {
+    clearErrorMessage();
+    if (error1) {
+      return (
+        <div
+          className="text-danger center"
+          style={{ display: error ? "" : "none", textAlign: "center" }}
+        >
+          <h4>{error}</h4>
+        </div>
+      );
+    }
+  };
+
+  const showSuccess = () => {
+    clearSuccessMessage();
+    if (success) {
+      return (
+        <div
+          className="text-success center"
+          style={{ display: createdProduct ? "" : "none", textAlign: "center" }}
+        >
+          <h4>{Capitalize(createdProduct)} successfully created</h4>
+        </div>
+      );
+    }
+  };
+
+
+  const showLoading = () =>
+    loading && (
+      <div>
+        <Spinner />
+      </div>
+    );
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
+      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
         <div className="container">
           <Link
             to="/"
@@ -224,12 +259,10 @@ function AddFood({ history }) {
           </div>
         </div>
       </nav>
-      <Link
-        className="btn btn-outline-warning mt-3 mx-4"
-        to="/admindashboard"
-      >
+      <Link className="btn btn-outline-warning mt-3 mx-4" to="/admindashboard">
         Go Back
       </Link>
+      {/* {showLoading()} */}
       {showSuccess()}
       {showError()}
       <div className="row">

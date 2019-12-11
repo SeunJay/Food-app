@@ -4,6 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { foodTotal } from "./cartHelpers";
 import Cart from "./Cart";
 import { signout } from "../../auth";
+import capitalize from "../../user/capitalize";
 
 function DashboardNav({ history, cart }) {
   const {
@@ -37,7 +38,7 @@ function DashboardNav({ history, cart }) {
                   // style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {name}
+                  {`Hello ${capitalize(name)}`}
                 </span>
               </li>
               {cart && (

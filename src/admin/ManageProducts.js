@@ -86,7 +86,10 @@ const ManageProducts = ({ history }) => {
           </div>
         </div>
       </nav>
-      <Link className="btn btn-outline-warning mt-3 mx-4" to="/admindashboard">
+      <Link
+        className="btn btn-outline-warning mt-3 mx-4 mb-4"
+        to="/admindashboard"
+      >
         Go Back
       </Link>
       {loading ? (
@@ -94,19 +97,16 @@ const ManageProducts = ({ history }) => {
       ) : (
         <div className="row">
           <div className="col-12">
-            {/* <h2 className="text-center">Total {products.length} products</h2> */}
-            <hr />
-
-            {products.map((p, i) => (
-              <table className="table" key={i}>
-                <thead className="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Description</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Remove</th>
-                  </tr>
-                </thead>
+            <table className="table">
+              <thead className="thead-dark">
+                <tr>
+                  <th scope="col">#</th>
+                  <th scope="col">Description</th>
+                  <th scope="col">Edit</th>
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              {products.map((p, i) => (
                 <tbody>
                   <tr>
                     <th scope="row">{i + 1}</th>
@@ -131,8 +131,8 @@ const ManageProducts = ({ history }) => {
                     </td>
                   </tr>
                 </tbody>
-              </table>
-            ))}
+              ))}
+            </table>
 
             <br />
           </div>

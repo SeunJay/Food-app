@@ -107,15 +107,15 @@ export default function Cards({
   return (
     <div className="card p-0 w-75">
       <div className="card-header">{food.name}</div>
-      <div className="card-body p-0">
+      <div className="card-body p-3">
         {shouldRedirect(redirect)}
         <ShowImage item={food} url="food" />
-        <p className="lead mt-2">{food.description.substring(0, 50)}</p>
-        <p className="black-9">${food.price}</p>
+        <p className=" mt-2">{food.description.substring(0, 50)}</p>
+        <p className="black-9">Price: ${food.price}</p>
         <p className="black-8">
           Category: {food.category && food.category.name}
         </p>
-        <p className="black-8">Add on {moment(food.createdAt).fromNow()}</p>
+        <p className="black-8">Added {moment(food.createdAt).fromNow()}</p>
         {showStock(food.quantity)}
         <br />
         {showViewButton(showViewFoodButton)}
