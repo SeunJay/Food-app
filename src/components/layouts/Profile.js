@@ -116,7 +116,7 @@ export default function Profile({ match }) {
 
   return (
     <div>
-      <NavBar brand="Omnifood" />
+      <NavBar brand="Paystand" />
       <h2 className="mb-4 text-center">Profile Update</h2>
       {profileUpdate()}
       {redirectUser(success)}

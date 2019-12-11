@@ -17,48 +17,49 @@ function UserDashboard() {
 
 
   const userLinks = () => {
-    return (
-      <div className="card ml-3">
-        <h4
-          className="card-header bg-warning text-center"
-          style={{ color: "#fff" }}
-        >
-          Dashboard
-        </h4>
-        <ul className="list-group">
-          <li className="list-group-item" style={{ textAlign: "center" }}>
-            <Link className="nav-link text-warning text-center" to="/cart">
-              My Orders
-            </Link>
-          </li>
-          <li className="list-group-item" style={{ textAlign: "center" }}>
-            <Link
-              className="nav-link text-warning text-center"
-              to={`/profile/${_id}`}
-            >
-              Update Profile
-            </Link>
-          </li>
-          <li className="list-group-item" style={{ textAlign: "center" }}>
-            <Link
-              className="nav-link text-warning text-center"
-              to="/dashboard/products"
-            >
-              View Products
-            </Link>
-          </li>
-          <li className="list-group-item" style={{ textAlign: "center" }}>
-            <Link
-              className="nav-link text-warning text-center"
-              to="/dashboard/orderhistory"
-            >
-              Order History
-            </Link>
-          </li>
-        </ul>
-      </div>
+    return (      
+  <div className="row">
+    <nav className="col-9 d-none d-md-block bg-light sidebar sidenav-top">
+      <div className="sidebar-sticky">
+        <ul className="nav flex-column">
+          <li className="nav-item">
+            <Link className="nav-link active" href="#">
+              <span data-feather="home"></span>
+              Dashboard <span className="sr-only">(current)</span>
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link className="nav-link" to="/cart">
+							<span data-feather="file"></span>
+							Orders
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link className="nav-link" to={`/profile/${_id}`}>
+							<span data-feather="shopping-cart"></span>
+							Update Profile
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link className="nav-link" to="/dashboard/products">
+							<span data-feather="users"></span>
+							View Products
+						</Link>
+					</li>
+					<li className="nav-item">
+						<Link className="nav-link" to="/dashboard/orderhistory">
+							<span data-feather="bar-chart-2"></span>
+							Order History
+						</Link>
+					</li>
+				</ul>
+			</div>
+		</nav>
+  </div>
     );
   };
+
+
 
   const userInfo = () => {
     return (
@@ -81,7 +82,7 @@ function UserDashboard() {
       <div className="container-fluid">
         <div className="row">
           <div className="col-3">{userLinks()}</div>
-          <div className="col-9">
+          <div className="col-9 mt-5">
             {userInfo()}
           </div>
         </div>

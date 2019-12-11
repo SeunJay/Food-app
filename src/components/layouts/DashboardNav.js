@@ -12,7 +12,7 @@ function DashboardNav({ history, cart }) {
   console.log(cart);
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top" style={{backgroundColor:"#DD4F05"}}>
+      <nav className="navbar navbar-expand-sm navbar-dark mb-0 py-0 sticky-top" style={{backgroundColor:"#DD4F05"}}>
         <div className="container">
           <Link
             to="/"
