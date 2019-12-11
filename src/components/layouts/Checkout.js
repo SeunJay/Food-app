@@ -56,7 +56,6 @@ const Checkout = ({ foods }) => {
     return isAuthenticated() ? (
       <>
         <div>{showDropIn()}</div>
-        <div className="btn btn-success mt-3">Checkout</div>
       </>
     ) : (
       <Link to="/signin">
