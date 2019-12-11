@@ -21,7 +21,7 @@ function DashboardNav({ history, cart }) {
             // style={isActive(history, "/")}
             style={{fontSize:"2rem", fontWeight: "700"}}
           >
-            Paystand.
+            Paystand
           </Link>
           <div>
             <ul className="navbar-nav mr-auto">
