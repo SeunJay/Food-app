@@ -60,7 +60,7 @@ export default function Signin() {
   const showLoading = () => {
     return (
       loading && (
-        <div className="alert alert-info">
+        <div className="alert alert-light">
           <Spinner />
         </div>
       )

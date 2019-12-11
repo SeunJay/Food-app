@@ -5,7 +5,7 @@ import "./Navbar.css";
 
 function NavBar({ brand, history }) {
   return (
-    <nav className="home-nav navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top">
+    <nav className="home-nav navbar navbar-expand-sm navbar-dark mb-0 py-0 sticky-top">
       <div className="container">
         <Link
           to="/"
