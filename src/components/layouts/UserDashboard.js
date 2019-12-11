@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { isAuthenticated } from "../../auth/index";
 import "./dashboard.css";
-import { getFoods } from "./apiLayout";
-import Cards from "./Cards";
 import DashboardNav from "./DashboardNav";
-import moment from "moment";
+import capitalize from "../../user/capitalize"; 
 
 function UserDashboard() {
 
@@ -31,14 +29,14 @@ function UserDashboard() {
               My Orders
             </Link>
           </li>
-          <li className="list-group-item" style={{ textAlign: "center" }}>
+          {/* <li className="list-group-item" style={{ textAlign: "center" }}>
             <Link
               className="nav-link text-warning text-center"
               to={`/profile/${_id}`}
             >
               Update Profile
             </Link>
-          </li>
+          </li> */}
           <li className="list-group-item" style={{ textAlign: "center" }}>
             <Link
               className="nav-link text-warning text-center"

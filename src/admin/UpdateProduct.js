@@ -3,8 +3,11 @@ import { isAuthenticated } from "../auth";
 import { Link, Redirect } from "react-router-dom";
 import { getProduct, getCategories, updateProduct } from "./apiAdmin";
 import { signout } from "../auth";
+import Spinner from "../components/layouts/Spinner";
 
 const UpdateProduct = ({ match, history }) => {
+  const [success, setSuccess] = useState(false);
+  const [error1, setError1] = useState(false);
   const [values, setValues] = useState({
     name: "",
     description: "",
@@ -41,6 +44,7 @@ const UpdateProduct = ({ match, history }) => {
     getProduct(productId).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
+        setError1(true);
       } else {
         // populate the state
         setValues({
@@ -64,6 +68,7 @@ const UpdateProduct = ({ match, history }) => {
     getCategories().then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
+        setError1(true);
       } else {
         setValues({
           categories: data,
@@ -104,69 +109,70 @@ const UpdateProduct = ({ match, history }) => {
             redirectToProfile: true,
             createdProduct: data.name
           });
+          setSuccess(true);
         }
       }
     );
   };
 
   const newPostForm = () => (
-     <div className="container col-md-8 offset-md-2 card-header">
-    <form className="mb-3" onSubmit={clickSubmit}>
-      <h4>Post Photo</h4>
-      <div className="form-group">
-        <label className="btn btn-secondary">
+    <div className="container col-md-8 offset-md-2 card-header">
+      <form className="mb-3" onSubmit={clickSubmit}>
+        <h5>Post Photo</h5>
+        <div className="form-group">
+          <label className="btn btn-warning">
+            <input
+              onChange={handleChange("photo")}
+              type="file"
+              name="photo"
+              accept="image/*"
+            />
+          </label>
+        </div>
+
+        <div className="form-group">
+          <label className="text-muted">Name</label>
           <input
-            onChange={handleChange("photo")}
-            type="file"
-            name="photo"
-            accept="image/*"
+            onChange={handleChange("name")}
+            type="text"
+            className="form-control"
+            value={name}
           />
-        </label>
-      </div>
+        </div>
 
-      <div className="form-group">
-        <label className="text-muted">Name</label>
-        <input
-          onChange={handleChange("name")}
-          type="text"
-          className="form-control"
-          value={name}
-        />
-      </div>
+        <div className="form-group">
+          <label className="text-muted">Description</label>
+          <textarea
+            onChange={handleChange("description")}
+            className="form-control"
+            value={description}
+          />
+        </div>
 
-      <div className="form-group">
-        <label className="text-muted">Description</label>
-        <textarea
-          onChange={handleChange("description")}
-          className="form-control"
-          value={description}
-        />
-      </div>
+        <div className="form-group">
+          <label className="text-muted">Price</label>
+          <input
+            onChange={handleChange("price")}
+            type="number"
+            className="form-control"
+            value={price}
+          />
+        </div>
 
-      <div className="form-group">
-        <label className="text-muted">Price</label>
-        <input
-          onChange={handleChange("price")}
-          type="number"
-          className="form-control"
-          value={price}
-        />
-      </div>
+        <div className="form-group">
+          <label className="text-muted">Category</label>
+          <select onChange={handleChange("category")} className="form-control">
+            <option>Please select</option>
+            {categories &&
+              categories.map((c, i) => (
+                <option key={i} value={c._id}>
+                  {c.name}
+                </option>
+              ))}
+          </select>
+        </div>
 
-      <div className="form-group">
-        <label className="text-muted">Category</label>
-        <select onChange={handleChange("category")} className="form-control">
-          <option>Please select</option>
-          {categories &&
-            categories.map((c, i) => (
-              <option key={i} value={c._id}>
-                {c.name}
-              </option>
-            ))}
-        </select>
-      </div>
-
-      {/* <div className="form-group">
+        {/* <div className="form-group">
         <label className="text-muted">Shipping</label>
         <select onChange={handleChange("shipping")} className="form-control">
           <option>Please select</option>
@@ -175,20 +181,32 @@ const UpdateProduct = ({ match, history }) => {
         </select>
       </div> */}
 
-      <div className="form-group">
-        <label className="text-muted">Quantity</label>
-        <input
-          onChange={handleChange("quantity")}
-          type="number"
-          className="form-control"
-          value={quantity}
-        />
-      </div>
+        <div className="form-group">
+          <label className="text-muted">Quantity</label>
+          <input
+            onChange={handleChange("quantity")}
+            type="number"
+            className="form-control"
+            value={quantity}
+          />
+        </div>
 
-      <button className="btn btn-outline-warning">Update Product</button>
-    </form>
+        <button className="btn btn-outline-warning">Update Product</button>
+      </form>
     </div>
   );
+
+  const clearErrorMessage = () => {
+    setTimeout(() => {
+      setError1(true);
+    }, 5000);
+  };
+
+  const clearSuccessMessage = () => {
+    setTimeout(() => {
+      setSuccess(false);
+    }, 10000);
+  };
 
   const showError = () => (
     <div
@@ -199,29 +217,26 @@ const UpdateProduct = ({ match, history }) => {
     </div>
   );
 
-  const showSuccess = () => (
-    <div
-      className="alert alert-info"
-      style={{ display: createdProduct ? "" : "none" }}
-    >
-      <h2>{`${createdProduct}`} is updated!</h2>
-    </div>
-  );
+  const showSuccess = () => {
+    clearSuccessMessage();
+    if (success) {
+      return (
+        <div
+          className="alert alert-info center"
+          style={{ display: createdProduct ? "" : "none" }}
+        >
+          <h4 className="text-center">Product successfully updated!</h4>
+        </div>
+      );
+    }
+  };
 
   const showLoading = () =>
     loading && (
-      <div className="alert alert-success">
-        <h2>Loading...</h2>
+      <div>
+        <Spinner />
       </div>
     );
-
-  const redirectUser = () => {
-    if (redirectToProfile) {
-      if (!error) {
-        return <Redirect to="/" />;
-      }
-    }
-  };
 
   return (
     <>
@@ -276,11 +291,11 @@ const UpdateProduct = ({ match, history }) => {
       </Link>
       <div className="row">
         <div className="col-md-8 offset-md-2">
-          {showLoading()}
+          {/* {showLoading()} */}
           {showSuccess()}
           {showError()}
           {newPostForm()}
-          {redirectUser()}
+          {/* {redirectUser()} */}
         </div>
       </div>
     </>

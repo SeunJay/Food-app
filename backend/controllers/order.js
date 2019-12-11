@@ -1,5 +1,9 @@
 const { Order, CartItem } = require("../models/Order");
 const { errorHandler } = require("../helpers/dbErrorHandler");
+const sgMail = require("@sendgrid/mail");
+sgMail.setApiKey(
+  "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"
+);
 
 exports.orderById = (req, res, next, id) => {
   Order.findById(id)
@@ -11,8 +15,8 @@ exports.orderById = (req, res, next, id) => {
         });
       }
       req.order = order;
-      next();
     });
+  next();
 };
 
 exports.create = (req, res) => {
@@ -25,6 +29,20 @@ exports.create = (req, res) => {
         error: errorHandler(error)
       });
     }
+    const emailData = {
+      to: "saburahmed794@gmail.com",
+      from: "noreply@paystand.com",
+      subject: `A new order received`,
+      html: `
+            <p>Total products: ${order.foods.length}</p>
+            <p>Total cost: ${order.amount}</p>
+            <p>Delivery Address: ${order.address}</p>
+            <p>Login to dashboard to view the order details.</p>
+        `
+    };
+    sgMail.send(emailData).then(sent=>{
+      console.log(`email sent ${sent}`)
+    });
     res.json(data);
   });
 };
