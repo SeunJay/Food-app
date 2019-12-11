@@ -36,37 +36,32 @@ function OrderHistory() {
   const purchaseHistory = history => {
     return (
       <div className="card mb-5">
-        <h3 className="card-header">Order history</h3>
+        <h3 className="card-header text-center">Order history</h3>
         <ul className="list-group">
           <li className="list-group-item">
             {history.map((h, i) => {
               return (
                 <div key={i}>
                   <hr />
-                  {h.foods.map((p, i) => {
-                    return (
-                      // <div key={i}>
-                      //   <h6>Product name: {p.name}</h6>
-                      //   <h6>Product price: ${p.price}</h6>
-                      // </div>
-                      <table className="table" key={i}>
-                        <thead className="thead-dark">
-                          <tr>
-                            <th scope="col">S/N</th>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Product Price</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <tr>
-                            <th scope="row">{i + 1}</th>
-                            <td>{p.name}</td>
-                            <td>${p.price}</td>
-                          </tr>
-                        </tbody>
-                      </table>
-                    );
-                  })}
+
+                  <table className="table">
+                    <thead className="thead-dark">
+                      <tr>
+                        <th scope="col">S/N</th>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Price</th>
+                      </tr>
+                    </thead>
+                    {h.foods.map((p, i) => (
+                      <tbody key={i}>
+                        <tr>
+                          <th scope="row">{i + 1}</th>
+                          <td>{p.name}</td>
+                          <td>${p.price}</td>
+                        </tr>
+                      </tbody>
+                    ))}
+                  </table>
                 </div>
               );
             })}
