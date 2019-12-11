@@ -23,7 +23,7 @@ function UserDashboard() {
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">
-            <Link className="nav-link active" href="#">
+            <Link className="nav-link active" to="#">
               <span data-feather="home"></span>
               Dashboard <span className="sr-only">(current)</span>
 						</Link>
