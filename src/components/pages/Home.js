@@ -8,7 +8,7 @@ import "./Home1.css";
 export default function Home() {
   return (
     <>
-      <NavBar brand="Paystand." />
+      <NavBar brand="Paystand" />
       <section id="section-background">
         <div className="hero-text-box">
           <h1 className="caption">

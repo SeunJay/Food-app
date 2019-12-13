@@ -58,7 +58,7 @@ function DashboardNav({ history, cart }) {
               )}
               <li className="nav-item">
                 <Link
-                  to="/"
+                  to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signup")}
                   // style={{ fontWeight: "800" }}

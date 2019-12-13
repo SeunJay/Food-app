@@ -104,7 +104,7 @@ export default function Signup() {
 
   return (
     <>
-      <NavBar brand="Paystand." />
+      <NavBar brand="Paystand" />
       <div className="div-wrapper">
       <div className="container col-md-9">
         <div className="mb-3 shadow rounded my-lg-5">

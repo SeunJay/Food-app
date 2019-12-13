@@ -17,7 +17,7 @@ function UserDashboard() {
   const userLinks = () => {
     return (      
   <div className="row">
-    <nav className="col-9 d-none d-md-block bg-light sidebar sidenav-top">
+    <nav className="col-8 d-none d-md-block bg-light sidebar sidenav-top">
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-item">
@@ -61,16 +61,86 @@ function UserDashboard() {
 
   const userInfo = () => {
     return (
-      <div className="card mb-5">
+      <>
+      <div className="card mb-5 shadow">
         <h3 className="card-header" style={{ textAlign: "center" }}>
-          User Information
+          Your Dashboard
         </h3>
         <ul className="list-group">
           <li className="list-group-item">{name}</li>
           <li className="list-group-item">{businessEmail}</li>
-          <li className="list-group-item">{role === 1 ? "Admin" : "User"}</li>
+          <li className="list-group-item">{role === 1 ? "Manufacturer" : "Distributor"}</li>
         </ul>
       </div>
+
+
+      <div className="content">
+      <div className="row">
+        <div className="col-lg-4 col-md-6 col-sm-6">
+        <div className="card card-stats shadow">
+            <div className="card-body ">
+              <div className="row">
+              <div className="col-12 text-center">
+              <div className="numbers" style={{ fontWeight: "800" }}>
+                    <p className="card-category">Total Orders</p>
+                    <h3 className="card-title">3</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card-footer ">
+            <Link className="stats text-warning" to="/cart">
+            See more
+            </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6 col-sm-6">
+        <div className="card card-stats shadow">
+            <div className="card-body ">
+              <div className="row">
+              <div className="col-12 text-center">
+              <div className="numbers" style={{ fontWeight: "800" }}>
+                    <p className="card-category">Last Order</p>
+                    <h3 className="card-title">2 hours ago
+                      </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card-footer ">
+            <Link className="stats text-warning" to="/dashboard/orderhistory">
+              See more
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        <div className="col-lg-4 col-md-6 col-sm-6">
+        <div className="card card-stats shadow">
+            <div className="card-body ">
+              <div className="row">
+                <div className="col-12 text-center">
+                <div className="numbers" style={{ fontWeight: "800" }}>
+                    <p className="card-category">Available Products</p>
+                    <h3 className="card-title">4
+                      </h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="card-footer ">
+
+            <Link className="stats text-warning" to="/dashboard/products">
+            See more
+            </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </>
     );
   };
 
@@ -78,9 +148,9 @@ function UserDashboard() {
     <>
       <DashboardNav cart={true} />
       <div className="container-fluid">
-        <div className="row">
+        <div className="row bg-c">
           <div className="col-3">{userLinks()}</div>
-          <div className="col-9 mt-5">
+          <div className="col-8 mt-4">
             {userInfo()}
           </div>
         </div>
