@@ -35,39 +35,45 @@ function OrderHistory() {
 
   const purchaseHistory = history => {
     return (
-      <div className="card mb-5">
-        <h3 className="card-header text-center">Order history</h3>
-        <ul className="list-group">
-          <li className="list-group-item">
-            {history.map((h, i) => {
-              return (
-                <div key={i}>
-                  <hr />
+      <>
+        {history.length === 0 ? (
+          <h3>You have no order history yet</h3>
+        ) : (
+          <div className="card mb-5">
+            <h3 className="card-header text-center">Order history</h3>
+            <ul className="list-group">
+              <li className="list-group-item">
+                {history.map((h, i) => {
+                  return (
+                    <div key={i}>
+                      <hr />
 
-                  <table className="table">
-                    <thead className="thead-dark">
-                      <tr>
-                        <th scope="col">S/N</th>
-                        <th scope="col">Product Name</th>
-                        <th scope="col">Product Price</th>
-                      </tr>
-                    </thead>
-                    {h.foods.map((p, i) => (
-                      <tbody key={i}>
-                        <tr>
-                          <th scope="row">{i + 1}</th>
-                          <td>{p.name}</td>
-                          <td>${p.price}</td>
-                        </tr>
-                      </tbody>
-                    ))}
-                  </table>
-                </div>
-              );
-            })}
-          </li>
-        </ul>
-      </div>
+                      <table className="table">
+                        <thead className="thead-dark">
+                          <tr>
+                            <th scope="col">S/N</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Product Price</th>
+                          </tr>
+                        </thead>
+                        {h.foods.map((p, i) => (
+                          <tbody key={i}>
+                            <tr>
+                              <th scope="row">{i + 1}</th>
+                              <td>{p.name}</td>
+                              <td>${p.price}</td>
+                            </tr>
+                          </tbody>
+                        ))}
+                      </table>
+                    </div>
+                  );
+                })}
+              </li>
+            </ul>
+          </div>
+        )}
+      </>
     );
   };
 

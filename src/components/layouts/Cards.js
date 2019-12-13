@@ -28,8 +28,7 @@ export default function Cards({
     );
   };
 
-  console.log(food);
-
+  
   const showRemoveButton = showRemoveFoodButton =>
     showRemoveFoodButton && (
       <button
@@ -47,7 +46,8 @@ export default function Cards({
     return quantity > 0 ? (
       <span className="badge badge-primary badge-pill">In Stock</span>
     ) : (
-      <span className="badge badge-danger badge-pill">Out of stock</span>
+    <span className="badge badge-danger badge-pill">Out of stock </span>
+      //setIsInStock(false)
     );
   };
 
@@ -57,18 +57,20 @@ export default function Cards({
     });
   };
 
-  const showAddToCart = showAddToCartButton => {
+  const showAddToCart = quantity => {
     return (
-      showAddToCartButton && (
-        <button
-          onClick={addToCart}
-          // disabled={showButton
-          // }
-          className="btn btn-outline-warning mt-2 mb-2"
-        >
-          Make order
-        </button>
-      )
+      quantity >
+      0 ? (
+        showAddToCartButton && (
+          <button
+            onClick={addToCart}
+            // disabled={showButton()}
+            className="btn btn-outline-warning mt-2 mb-2"
+          >
+            Make order
+          </button>
+        )
+      ): null
     );
   };
 
@@ -104,6 +106,8 @@ export default function Cards({
     }
   };
 
+  console.log(isInStock);
+
   return (
     <div className="card p-0 w-75">
       <div className="card-header">{food.name}</div>
@@ -120,7 +124,7 @@ export default function Cards({
         <br />
         {showViewButton(showViewFoodButton)}
 
-        {isInStock ? showAddToCart(showAddToCartButton) : null}
+        {isInStock ? showAddToCart(food.quantity) : null}
 
         {showRemoveButton(showRemoveFoodButton)}
 
