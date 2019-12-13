@@ -20,7 +20,7 @@ export default function Cards({
     return (
       showViewProductButton && (
         <Link to={`/food/${food._id}`} className="mr-2">
-          <button className="btn btn-outline-primary mt-2 mb-2">
+          <button className="btn btn-outline-primary mt-2 mb-1">
             View Product
           </button>
         </Link>
@@ -36,9 +36,9 @@ export default function Cards({
           removeItem(food._id);
           setRun(!run);
         }}
-        className="btn btn-outline-warning mt-2 mb-2"
+        className="btn btn-outline-warning mt-2 mb-1"
       >
-        Remove from orders
+        Remove
       </button>
     );
 
@@ -83,7 +83,7 @@ export default function Cards({
   const showCartUpdateOptions = cartUpdate => {
     return (
       cartUpdate && (
-        <div className="input-group mb-3">
+        <div className="input-group mb-1">
           <div className="input-group-prepend">
             <span className="input-group-text">Choose Quantity</span>
           </div>
@@ -109,17 +109,41 @@ export default function Cards({
   console.log(isInStock);
 
   return (
-    <div className="card p-0 w-75">
-      <div className="card-header">{food.name}</div>
-      <div className="card-body p-3">
-        {shouldRedirect(redirect)}
-        <ShowImage item={food} url="food" />
-        <p className=" mt-2">{food.description.substring(0, 50)}</p>
-        <p className="black-9">Price: ${food.price}</p>
-        <p className="black-8">
-          Category: {food.category && food.category.name}
-        </p>
-        <p className="black-8">Added {moment(food.createdAt).fromNow()}</p>
+    // <div className="card p-0 w-75">
+    //   <div className="card-header">{food.name}</div>
+    //   <div className="card-body p-3">
+    //     {shouldRedirect(redirect)}
+    //     <ShowImage item={food} url="food" />
+    //     <p className=" mt-2">{food.description.substring(0, 50)}</p>
+    //     <p className="black-9">Price: ${food.price}</p>
+    //     <p className="black-8">
+    //       Category: {food.category && food.category.name}
+    //     </p>
+    //     <p className="black-8">Added {moment(food.createdAt).fromNow()}</p>
+    //     {showStock(food.quantity)}
+    //     <br />
+    //     {showViewButton(showViewFoodButton)}
+
+    //     {isInStock ? showAddToCart(showAddToCartButton) : null}
+
+    //     {showRemoveButton(showRemoveFoodButton)}
+
+    //     {showCartUpdateOptions(cartUpdate)}
+    //   </div>
+    // </div>
+
+
+
+
+    <div className="card mb-3 shadow" style={{maxWidth: "1000px"}}>
+  <div className="row no-gutters">
+    <div className="col-md-4" style={{height: "100%"}}>
+      <ShowImage item={food} url="food" />
+    </div>
+    <div className="col-10">
+      <div className="p-2">
+        <h5 className="card-title mt-0">{food.description.substring(0, 50)}</h5>
+        <p className="card-text"></p>
         {showStock(food.quantity)}
         <br />
         {showViewButton(showViewFoodButton)}
@@ -129,7 +153,11 @@ export default function Cards({
         {showRemoveButton(showRemoveFoodButton)}
 
         {showCartUpdateOptions(cartUpdate)}
+        <p className="card-text"><small className="text-muted">Added {moment(food.createdAt).fromNow()}</small></p>
+
       </div>
     </div>
+  </div>
+</div>
   );
 }

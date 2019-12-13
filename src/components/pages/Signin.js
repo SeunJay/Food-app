@@ -60,7 +60,7 @@ export default function Signin() {
   const showLoading = () => {
     return (
       loading && (
-        <div className="alert alert-info">
+        <div className="alert alert-light">
           <Spinner />
         </div>
       )
@@ -83,7 +83,7 @@ export default function Signin() {
 
   return (
     <>
-      <NavBar brand="Paystand." />
+      <NavBar brand="Paystand" />
       <div className="div-wrapper1">
       <div className="container col-md-6">
         <div className="mb-3 shadow rounded my-lg-5">
