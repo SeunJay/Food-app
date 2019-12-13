@@ -72,14 +72,15 @@ function AdminDashboard({ history }) {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
+      <nav className="navbar navbar-expand-sm navbar-dark mb-3 py-0" style={{backgroundColor:"#DD4F05"}}>
         <div className="container">
           <Link
             to="/"
             className="navbar-brand"
             // style={isActive(history, "/")}
+            style={{fontSize:"2rem", fontWeight: "700"}}
           >
-            Dashboard
+            Paystand
           </Link>
           <div>
             <ul className="navbar-nav mr-auto">
@@ -93,7 +94,7 @@ function AdminDashboard({ history }) {
                   to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signin")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
                   Hello {capitalize(name)}
@@ -101,10 +102,10 @@ function AdminDashboard({ history }) {
               </li>
               <li className="nav-item">
                 <Link
-                  to="/"
+                  to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signup")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                   onClick={() =>
                     signout(() => {
                       history.push("/");

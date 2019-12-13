@@ -1,11 +1,8 @@
 .home-nav{
  background: #DD4F05 !important;
+ color: #ffffff !important;
 }
 
 .navbar-dark .navbar-nav .nav-link{
     color: #ffffff !important;
-}
-
-.logo {
-    font-weight: 800 !important;
 }
