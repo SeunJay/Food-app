@@ -52,7 +52,7 @@ function Products() {
 					<li className="nav-item active">
 						<Link className="nav-link" to="/cart">
 							<span data-feather="file"></span>
-							Orders
+							Your cart
 						</Link>
 					</li>
 					{/*<li className="nav-item">

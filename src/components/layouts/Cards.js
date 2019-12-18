@@ -132,32 +132,35 @@ export default function Cards({
     //   </div>
     // </div>
 
+    <div className="card mb-3 shadow" style={{ maxWidth: "1000px" }}>
+      <div className="row no-gutters">
+        <div className="col-md-4" style={{ height: "100%" }}>
+          {shouldRedirect(redirect)}
+          <ShowImage item={food} url="food" />
+        </div>
+        <div className="col-10">
+          <div className="p-2">
+            <h5 className="card-title mt-0">
+              {food.description.substring(0, 50)}
+            </h5>
+            <p className="card-text"></p>
+            {showStock(food.quantity)}
+            <br />
+            {showViewButton(showViewFoodButton)}
 
+            {isInStock ? showAddToCart(food.quantity) : null}
 
+            {showRemoveButton(showRemoveFoodButton)}
 
-    <div className="card mb-3 shadow" style={{maxWidth: "1000px"}}>
-  <div className="row no-gutters">
-    <div className="col-md-4" style={{height: "100%"}}>
-      <ShowImage item={food} url="food" />
-    </div>
-    <div className="col-10">
-      <div className="p-2">
-        <h5 className="card-title mt-0">{food.description.substring(0, 50)}</h5>
-        <p className="card-text"></p>
-        {showStock(food.quantity)}
-        <br />
-        {showViewButton(showViewFoodButton)}
-
-        {isInStock ? showAddToCart(food.quantity) : null}
-
-        {showRemoveButton(showRemoveFoodButton)}
-
-        {showCartUpdateOptions(cartUpdate)}
-        <p className="card-text"><small className="text-muted">Added {moment(food.createdAt).fromNow()}</small></p>
-
+            {showCartUpdateOptions(cartUpdate)}
+            <p className="card-text">
+              <small className="text-muted">
+                Added {moment(food.createdAt).fromNow()}
+              </small>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
   );
 }

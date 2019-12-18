@@ -34,50 +34,48 @@ function OrderHistory() {
 
   console.log(history);
 
-
   const userLinks = () => {
-    return (      
-  <div className="row">
-    <nav className="col-8 d-none d-md-block bg-light sidebar sidenav-top">
-      <div className="sidebar-sticky">
-        <ul className="nav flex-column">
-          <li className="nav-item">
-            <Link className="nav-link" to="/userdashboard">
-              <span data-feather="home"></span>
-              Dashboard 
-						</Link>
-					</li>
-					<li className="nav-item active">
-						<Link className="nav-link" to="/cart">
-							<span data-feather="file"></span>
-							Orders <span className="sr-only">(current)</span>
-						</Link>
-					</li>
-					{/*<li className="nav-item">
+    return (
+      <div className="row">
+        <nav className="col-8 d-none d-md-block bg-light sidebar sidenav-top">
+          <div className="sidebar-sticky">
+            <ul className="nav flex-column">
+              <li className="nav-item">
+                <Link className="nav-link" to="/userdashboard">
+                  <span data-feather="home"></span>
+                  Dashboard
+                </Link>
+              </li>
+              <li className="nav-item active">
+                <Link className="nav-link" to="/cart">
+                  <span data-feather="file"></span>
+                  Your cart <span className="sr-only">(current)</span>
+                </Link>
+              </li>
+              {/*<li className="nav-item">
 						<Link className="nav-link" to={`/profile/${_id}`}>
 							<span data-feather="shopping-cart"></span>
 							Update Profile
 						</Link>
             </li>*/}
-					<li className="nav-item">
-						<Link className="nav-link" to="/dashboard/products">
-							<span data-feather="users"></span>
-							View Products
-						</Link>
-					</li>
-					<li className="nav-item">
-						<Link className="nav-link active" to="#">
-							<span data-feather="bar-chart-2"></span>
-							Order History
-						</Link>
-					</li>
-				</ul>
-			</div>
-		</nav>
-  </div>
+              <li className="nav-item">
+                <Link className="nav-link" to="/dashboard/products">
+                  <span data-feather="users"></span>
+                  View Products
+                </Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link active" to="#">
+                  <span data-feather="bar-chart-2"></span>
+                  Order History
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
     );
   };
-
 
   const purchaseHistory = history => {
     return (
@@ -127,22 +125,22 @@ function OrderHistory() {
     <>
       <DashboardNav cart={true} />
       <div className="d-flex flex-row bg-c">
-      <div className="col-3">{userLinks()}</div>
-      <div className="container-fluid">
-        {/*<Link
+        <div className="col-3">{userLinks()}</div>
+        <div className="container-fluid">
+          {/*<Link
           className="btn btn-outline-warning mt-3 mx-4 mb-4"
           to="/userdashboard"
         >
           Go Back
   </Link>*/}
-        <div className="row">
-          {/* <div className="col-3">{userLinks()}</div> */}
-          <div className="col-md-8 offset-md-2">
-            {/* {userInfo()} */}
-            {loading ? <Spinner /> : purchaseHistory(history)}
+          <div className="row">
+            {/* <div className="col-3">{userLinks()}</div> */}
+            <div className="col-md-8 offset-md-2">
+              {/* {userInfo()} */}
+              {loading ? <Spinner /> : purchaseHistory(history)}
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </>
   );

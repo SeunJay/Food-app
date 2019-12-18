@@ -49,7 +49,7 @@ function DashboardNav({ history, cart }) {
                     // style={isActive(history, "/signup")}
                     // style={{ fontWeight: "800" }}
                   >
-                    <i className="fas fa-question" /> Order{" "}
+                    <i className="fas fa-question" /> Cart{" "}
                     <sup>
                       <small className="cart-badge">{foodTotal()}</small>
                     </sup>

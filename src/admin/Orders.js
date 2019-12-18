@@ -26,8 +26,6 @@ const Orders = ({ history }) => {
     });
   };
 
-  console.log(orders);
-  console.log(user);
 
   const loadStatusValues = () => {
     getStatusValues(user._id, token).then(data => {
@@ -46,7 +44,11 @@ const Orders = ({ history }) => {
 
   const showOrdersLength = () => {
     if (orders.length > 0) {
-      return <h1 className="text-warning">Total orders: {orders.length}</h1>;
+      return (
+        <h2 style={{ color: "#DD4F05" }}>
+          Total orders: {orders.length}
+        </h2>
+      );
     } else {
       return <h1 className="text-danger">No orders</h1>;
     }
@@ -90,14 +92,17 @@ const Orders = ({ history }) => {
 
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
+      <nav
+        className="navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top"
+        style={{ background: "#DD4F05" }}
+      >
         <div className="container">
           <Link
             to="/"
             className="navbar-brand"
-            // style={isActive(history, "/")}
+            style={{ fontWeight: "800", fontSize: "2rem" }}
           >
-            Dashboard
+            Paystand
           </Link>
           <div>
             <ul className="navbar-nav mr-auto">
@@ -111,7 +116,7 @@ const Orders = ({ history }) => {
                   to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signin")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
                   Hello {user.name}
@@ -122,7 +127,7 @@ const Orders = ({ history }) => {
                   to="/"
                   className="nav-link"
                   // style={isActive(history, "/signup")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                   onClick={() =>
                     signout(() => {
                       history.push("/");
@@ -149,9 +154,11 @@ const Orders = ({ history }) => {
                 key={oIndex}
                 style={{ borderBottom: "5px solid indigo" }}
               >
-                <h2 className="mb-5">
-                  <span className="bg-warning">Order ID: {o._id}</span>
-                </h2>
+                <h3 className="mb-5">
+                  <span className="" style={{ background: "#DD4F05" }}>
+                    Order ID: {o._id}
+                  </span>
+                </h3>
 
                 <ul className="list-group mb-2">
                   <li className="list-group-item">{showStatus(o)}</li>

@@ -28,7 +28,7 @@ exports.create = (req, res) => {
       });
     }
     const emailData = {
-      to: "saburahmed794@gmail.com",
+      to: "seunjay92@gmail.com",
       from: "noreply@paystand.com",
       subject: `A new order received`,
       html: `

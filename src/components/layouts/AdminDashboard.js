@@ -14,31 +14,34 @@ function AdminDashboard({ history }) {
     return (
       <div className="card ml-3">
         <h4
-          className="card-header bg-warning text-center"
-          style={{ color: "#fff" }}
+          className="card-header text-center"
+          style={{ color: "#fff", background: "#DD4F05" }}
         >
           Admin Links
         </h4>
         <ul className="list-group">
           <li className="list-group-item">
             <Link
-              className="nav-link text-warning text-center"
+              className="nav-link text-center"
               to="/create/category"
+              style={{ color: "#DD4F05" }}
             >
               Add Category
             </Link>
           </li>
           <li className="list-group-item">
             <Link
-              className="nav-link text-warning text-center"
+              className="nav-link text-center"
               to="/create/product"
+              style={{ color: "#DD4F05" }}
             >
               Add Product
             </Link>
           </li>
           <li className="list-group-item">
             <Link
-              className="nav-link text-warning text-center"
+              className="nav-link text-center"
+              style={{ color: "#DD4F05" }}
               to="/admin/orders"
             >
               View Orders
@@ -46,7 +49,8 @@ function AdminDashboard({ history }) {
           </li>
           <li className="list-group-item">
             <Link
-              className="nav-link text-warning text-center"
+              className="nav-link text-center"
+              style={{ color: "#DD4F05" }}
               to="/admin/products"
             >
               Manage Products
