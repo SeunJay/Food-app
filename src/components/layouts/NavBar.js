@@ -1,15 +1,17 @@
 import React from "react";
 import { Link, withRouter } from "react-router-dom";
 import { signout, isAuthenticated } from "../../auth";
+import "./Navbar.css";
 
 function NavBar({ brand, history }) {
   return (
-    <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0 sticky-top">
+    <nav className="home-nav navbar navbar-expand-sm navbar-dark mb-0 py-0 sticky-top">
       <div className="container">
         <Link
           to="/"
           className="navbar-brand"
           // style={isActive(history, "/")}
+          style={{fontSize:"2rem", fontWeight: "700"}}
         >
           {brand}
         </Link>
@@ -24,32 +26,32 @@ function NavBar({ brand, history }) {
               <React.Fragment>
                 <div>
                   <li
-                    className="nav-item"
+                    className="nav-item text-light"
                     style={{ display: "inline-Block" }}
                   >
                     <Link
                       to="/signin"
                       className="nav-link"
                       // style={isActive(history, "/signin")}
-                      style={{ fontWeight: "800" }}
+                      // style={{ fontWeight: "800" }}
                     >
-                      <i className="fas fa-plus" /> Sign in
+                      Sign In
                     </Link>
                   </li>
                   <li
-                    className="nav-item"
+                    className="nav-item text-light"
                     style={{ display: "inline-Block" }}
                   >
                     <Link
                       to="/signup"
                       className="nav-link"
                       // style={isActive(history, "/signup")}
-                      style={{ fontWeight: "800" }}
+                      // style={{ fontWeight: "800" }}
                     >
-                      <i className="fas fa-question" /> Sign up
+                      Sign Up
                     </Link>
                   </li>
-                  <li
+                  {/*<li
                     className="nav-item"
                     style={{ display: "inline-Block" }}
                   >
@@ -61,7 +63,7 @@ function NavBar({ brand, history }) {
                     >
                       <i className="fas fa-question" /> Shop
                     </Link>
-                  </li>
+                  </li>*/}
                 </div>
               </React.Fragment>
             )}
@@ -78,7 +80,7 @@ function NavBar({ brand, history }) {
                     })
                   }
                 >
-                  Sign out
+                  Sign Out
                 </span>
               </li>
             )}

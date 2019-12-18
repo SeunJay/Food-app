@@ -27,9 +27,10 @@ function AddCategory({ history }) {
         setErrors(true);
       } else {
         setErrors("");
+        setName("");
         setSuccess(true);
       }
-      setName("");
+      
     });
   };
 
@@ -37,7 +38,7 @@ function AddCategory({ history }) {
     return (
       <form onSubmit={handleSubmit}>
         <div className="form-group">
-          <label className="text-muted">Food Category Name</label>
+          <label className="text-muted">Category Name</label>
           <input
             type="text"
             name="name"
@@ -70,7 +71,7 @@ function AddCategory({ history }) {
     if (success) {
       return (
         <h3 className="text-success center" style={{ textAlign: "center" }}>
-          {name} is created
+          New category successfully created
         </h3>
       );
     }
@@ -86,17 +87,20 @@ function AddCategory({ history }) {
       );
     }
   };
-  console.log(name);
+
   return (
     <>
-      <nav className="navbar navbar-expand-sm navbar-dark bg-warning mb-3 py-0">
+      <nav
+        className="navbar navbar-expand-sm navbar-dark mb-3 py-0 sticky-top"
+        style={{ backgroundColor: "#DD4F05" }}
+      >
         <div className="container">
           <Link
             to="/"
             className="navbar-brand"
-            // style={isActive(history, "/")}
+            style={{ fontWeight: "800", fontSize: "2rem" }}
           >
-            Dashboard
+            Paystand
           </Link>
           <div>
             <ul className="navbar-nav mr-auto">
@@ -110,10 +114,10 @@ function AddCategory({ history }) {
                   to="/signin"
                   className="nav-link"
                   // style={isActive(history, "/signin")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                 >
                   <i className="fas fa-plus" />
-                  Hello {user.firstName}
+                  Hello {user.name}
                 </span>
               </li>
               <li className="nav-item">
@@ -121,7 +125,7 @@ function AddCategory({ history }) {
                   to="/"
                   className="nav-link"
                   // style={isActive(history, "/signup")}
-                  style={{ fontWeight: "800" }}
+                  // style={{ fontWeight: "800" }}
                   onClick={() =>
                     signout(() => {
                       history.push("/");

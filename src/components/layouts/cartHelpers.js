@@ -1,5 +1,3 @@
-// import stringyfy from "fast-safe-stringify";
-// import CircularJSON from "circular-json";
 export const addFood = (food, next) => {
   let cart = [];
   if (typeof window !== "undefined") {
@@ -10,21 +8,68 @@ export const addFood = (food, next) => {
       ...food,
       count: 1
     });
+
     cart = Array.from(new Set(cart.map(f => f._id))).map(id => {
       return cart.find(f => f._id === id);
     });
-    // console.log(cart, "cart");
-    // console.log(food, "food");
 
     localStorage.setItem("cart", JSON.stringify(cart));
     next();
   }
 };
 
-// function replacer(key, value) {
-//   // Filtering out properties
-//   if (typeof value === "string") {
-//     return undefined;
-//   }
-//   return value;
-// }
+export const foodTotal = () => {
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("cart")) {
+      return JSON.parse(localStorage.getItem("cart")).length;
+    }
+  }
+  return 0;
+};
+
+export const getCart = () => {
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("cart")) {
+      return JSON.parse(localStorage.getItem("cart"));
+    }
+  }
+  return [];
+};
+
+export const updateItem = (foodId, count) => {
+  let cart = [];
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    }
+    cart.map((food, i) => {
+      if (food._id === foodId) {
+        cart[i].count = count;
+      }
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+};
+
+export const removeItem = foodId => {
+  let cart = [];
+  if (typeof window !== "undefined") {
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
+    }
+    cart.map((food, i) => {
+      if (food._id === foodId) {
+        cart.splice(i, 1);
+      }
+    });
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }
+  return cart;
+};
+
+export const emptyCart = next => {
+  if (typeof window !== "undefined") {
+    localStorage.removeItem("cart");
+    next();
+  }
+};

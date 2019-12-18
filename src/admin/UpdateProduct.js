@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { isAuthenticated } from "../auth";
-import { Link, withRouter } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
+import { getProduct, getCategories, updateProduct } from "./apiAdmin";
 import { signout } from "../auth";
-import { createProduct, getCategories } from "./apiAdmin";
-import Capitalize from "../user/capitalize";
 import Spinner from "../components/layouts/Spinner";
 
-function AddFood({ history }) {
+const UpdateProduct = ({ match, history }) => {
   const [success, setSuccess] = useState(false);
   const [error1, setError1] = useState(false);
   const [values, setValues] = useState({
@@ -15,25 +14,24 @@ function AddFood({ history }) {
     price: "",
     categories: [],
     category: "",
+    shipping: "",
     quantity: "",
     photo: "",
     loading: false,
-    error: "",
+    error: false,
     createdProduct: "",
     redirectToProfile: false,
     formData: ""
   });
 
   const { user, token } = isAuthenticated();
-
-  console.log(user);
-
   const {
     name,
     description,
     price,
     categories,
     category,
+    shipping,
     quantity,
     loading,
     error,
@@ -42,20 +40,46 @@ function AddFood({ history }) {
     formData
   } = values;
 
-  //load categories and set form data
-  const init = () => {
+  const init = productId => {
+    getProduct(productId).then(data => {
+      if (data.error) {
+        setValues({ ...values, error: data.error });
+        setError1(true);
+      } else {
+        // populate the state
+        setValues({
+          ...values,
+          name: data.name,
+          description: data.description,
+          price: data.price,
+          category: data.category._id,
+          shipping: data.shipping,
+          quantity: data.quantity,
+          formData: new FormData()
+        });
+        // load categories
+        initCategories();
+      }
+    });
+  };
+
+  // load categories and set form data
+  const initCategories = () => {
     getCategories().then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error });
         setError1(true);
       } else {
-        setValues({ ...values, categories: data, formData: new FormData() });
+        setValues({
+          categories: data,
+          formData: new FormData()
+        });
       }
     });
   };
 
   useEffect(() => {
-    init();
+    init(match.params.productId);
   }, []);
 
   const handleChange = name => event => {
@@ -64,48 +88,50 @@ function AddFood({ history }) {
     setValues({ ...values, [name]: value });
   };
 
-  const handleSubmit = event => {
+  const clickSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: "", loading: true });
 
-    createProduct(user._id, token, formData).then(data => {
-      if (data.error) {
-        setValues({ ...values, error: data.error });
-      } else {
-        setValues({
-          ...values,
-          name: "",
-          description: "",
-          photo: "",
-          price: "",
-          category: "",
-          quantity: "",
-          loading: false,
-          createdProduct: data.name
-        });
-        setSuccess(true);
+    updateProduct(match.params.productId, user._id, token, formData).then(
+      data => {
+        if (data.error) {
+          setValues({ ...values, error: data.error });
+        } else {
+          setValues({
+            ...values,
+            name: "",
+            description: "",
+            photo: "",
+            price: "",
+            quantity: "",
+            loading: false,
+            error: false,
+            redirectToProfile: true,
+            createdProduct: data.name
+          });
+          setSuccess(true);
+        }
       }
-    });
+    );
   };
 
   const newPostForm = () => (
     <div className="container col-md-8 offset-md-2 card-header">
-      <form className="mb-3" onSubmit={handleSubmit}>
+      <form className="mb-3" onSubmit={clickSubmit}>
         <h5>Post Photo</h5>
         <div className="form-group">
-          <label htmlFor="" className="btn btn-warning">
+          <label className="btn btn-warning">
             <input
-              type="file"
               onChange={handleChange("photo")}
+              type="file"
               name="photo"
               accept="image/*"
             />
           </label>
         </div>
+
         <div className="form-group">
-          <label htmlFor="" className="text-muted">
-            Name
-          </label>
+          <label className="text-muted">Name</label>
           <input
             onChange={handleChange("name")}
             type="text"
@@ -113,20 +139,18 @@ function AddFood({ history }) {
             value={name}
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="" className="text-muted">
-            Description
-          </label>
+          <label className="text-muted">Description</label>
           <textarea
             onChange={handleChange("description")}
             className="form-control"
             value={description}
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="" className="text-muted">
-            Price
-          </label>
+          <label className="text-muted">Price</label>
           <input
             onChange={handleChange("price")}
             type="number"
@@ -134,31 +158,40 @@ function AddFood({ history }) {
             value={price}
           />
         </div>
+
         <div className="form-group">
-          <label htmlFor="" className="text-muted">
-            Category
-          </label>
+          <label className="text-muted">Category</label>
           <select onChange={handleChange("category")} className="form-control">
             <option>Please select</option>
-            {categories.map((c, i) => (
-              <option key={i} value={c._id}>
-                {c.name}
-              </option>
-            ))}
+            {categories &&
+              categories.map((c, i) => (
+                <option key={i} value={c._id}>
+                  {c.name}
+                </option>
+              ))}
           </select>
         </div>
+
+        {/* <div className="form-group">
+        <label className="text-muted">Shipping</label>
+        <select onChange={handleChange("shipping")} className="form-control">
+          <option>Please select</option>
+          <option value="0">No</option>
+          <option value="1">Yes</option>
+        </select>
+      </div> */}
+
         <div className="form-group">
-          <label htmlFor="" className="text-muted">
-            Quantity
-          </label>
+          <label className="text-muted">Quantity</label>
           <input
             onChange={handleChange("quantity")}
-            className="form-control"
             type="number"
+            className="form-control"
             value={quantity}
           />
         </div>
-        <button className="btn btn-outline-warning">Add Product</button>
+
+        <button className="btn btn-outline-warning">Update Product</button>
       </form>
     </div>
   );
@@ -175,34 +208,28 @@ function AddFood({ history }) {
     }, 10000);
   };
 
-  const showError = () => {
-    clearErrorMessage();
-    if (error1) {
-      return (
-        <div
-          className="text-danger center"
-          style={{ display: error ? "" : "none", textAlign: "center" }}
-        >
-          <h4>{error}</h4>
-        </div>
-      );
-    }
-  };
+  const showError = () => (
+    <div
+      className="alert alert-danger"
+      style={{ display: error ? "" : "none" }}
+    >
+      {error}
+    </div>
+  );
 
   const showSuccess = () => {
     clearSuccessMessage();
     if (success) {
       return (
         <div
-          className="text-success center"
-          style={{ display: createdProduct ? "" : "none", textAlign: "center" }}
+          className="alert alert-info center"
+          style={{ display: createdProduct ? "" : "none" }}
         >
-          <h4>{Capitalize(createdProduct)} successfully created</h4>
+          <h4 className="text-center">Product successfully updated!</h4>
         </div>
       );
     }
   };
-
 
   const showLoading = () =>
     loading && (
@@ -221,7 +248,7 @@ function AddFood({ history }) {
           <Link
             to="/"
             className="navbar-brand"
-            style={{ fontWeight: "800", fontSize: "2rem" }}
+            // style={isActive(history, "/")}
           >
             Paystand
           </Link>
@@ -262,19 +289,20 @@ function AddFood({ history }) {
           </div>
         </div>
       </nav>
-      <Link className="btn btn-outline-warning mt-3 mx-4" to="/admindashboard">
+      <Link className="btn btn-outline-warning mt-3 mx-4" to="/admin/products">
         Go Back
       </Link>
-      {/* {showLoading()} */}
-      {showSuccess()}
-      {showError()}
       <div className="row">
-        <div className="col-md-8 offset-md-2" />
-
-        {newPostForm()}
+        <div className="col-md-8 offset-md-2">
+          {/* {showLoading()} */}
+          {showSuccess()}
+          {showError()}
+          {newPostForm()}
+          {/* {redirectUser()} */}
+        </div>
       </div>
     </>
   );
-}
+};
 
-export default withRouter(AddFood);
+export default UpdateProduct;

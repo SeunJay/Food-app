@@ -1,18 +1,27 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import NavBar from "../../components/layouts/NavBar";
 import { Redirect } from "react-router-dom";
 import { signin, authenticate, isAuthenticated } from "../../auth";
+import "./Signin.css";
+import Spinner from "../layouts/Spinner";
 
 export default function Signin() {
   const [values, setValues] = useState({
-    email: "tony@gmail.com",
-    password: "amolo90",
+    businessEmail: "",
+    password: "",
     error: "",
     loading: false,
     redirectToReferrer: false
   });
 
-  const { email, password, loading, error, redirectToReferrer } = values;
+  const {
+    businessEmail,
+    password,
+    loading,
+    error,
+    redirectToReferrer
+  } = values;
 
   const { user } = isAuthenticated();
 
@@ -23,7 +32,7 @@ export default function Signin() {
   const handleSubmit = event => {
     event.preventDefault();
     setValues({ ...values, error: false, loading: true });
-    signin({ email, password }).then(data => {
+    signin({ businessEmail, password }).then(data => {
       if (data.error) {
         setValues({ ...values, error: data.error, loading: false });
       } else {
@@ -51,8 +60,8 @@ export default function Signin() {
   const showLoading = () => {
     return (
       loading && (
-        <div className="alert alert-info">
-          <h2>LOADING...</h2>
+        <div className="alert alert-light">
+          <Spinner />
         </div>
       )
     );
@@ -67,47 +76,58 @@ export default function Signin() {
       }
     }
 
-    if(isAuthenticated()){
+    if (isAuthenticated()) {
       return <Redirect to="/" />;
     }
   };
 
   return (
     <>
-      <NavBar brand="Omnifood" />
-      <div className="container">
-        <div className="card mb-3">
+      <NavBar brand="Paystand" />
+      <div className="div-wrapper1">
+      <div className="container col-md-6">
+        <div className="mb-3 shadow rounded my-lg-5">
           {showLoading()}
-          <div className="card-header text-center">Sign in</div>
+          <div className="card-header bg-white text-center"><strong>SIGN INTO YOUR DASHBOARD</strong></div>
           <div className="card-body">
             {showError()}
             {redirectUser()}
             <form onSubmit={handleSubmit}>
-              <div className="form-group">
-                <label className="text-warning">Email</label>
+            <div className="form-group mb-4">
                 <input
-                  onChange={handleChange("email")}
+                  onChange={handleChange("businessEmail")}
                   type="email"
                   className="form-control"
-                  value={values.email}
+                  placeholder="Business Email"
+                  value={values.businessEmail}
                   name="email"
                 />
               </div>
 
-              <div className="form-group">
-                <label className="text-warning">Password</label>
-                <input
-                  onChange={handleChange("password")}
-                  type="password"
-                  className="form-control"
-                  value={values.password}
-                  name="password"
-                />
-              </div>
-              <button className="btn btn-warning" style={{ color: "#fff" }}>
-                Sign in
+                <div className="form-group mb-4">
+                  <input
+                    onChange={handleChange("password")}
+                    type="password"
+                    className="form-control"
+                    placeholder="Enter Password"
+                    value={values.password}
+                    name="password"
+                  />
+                </div>
+                <div style={{ textAlign: "center" }}>
+                <button className="btn btn-sign btn-warning" style={{ color: "#fff" }}>
+                Sign In
               </button>
-            </form>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div className="mb-5 text-info" style={{ textAlign: "center" }}>
+            Don't have a merchant account?{" "}
+            <Link to="/signup" style={{ color: "#DD4F05" }}>
+              Sign Up
+            </Link>
           </div>
         </div>
       </div>
